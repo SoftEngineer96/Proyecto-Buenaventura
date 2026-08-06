@@ -1,0 +1,398 @@
+<!doctype html><html lang="es"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Curso · Proyecto Buenaventura</title>
+<style>
+:root{--bg:#0f1216;--card:#171b21;--b:#242a33;--b2:#2f3742;--tx:#e6e9ee;--mu:#94a0ad;--dim:#6c7783;
+--ac:#5aa9ff;--ok:#3ecf8e;--wa:#f0b429;--pu:#b78af0}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:15.5px/1.68 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--ac)}
+code{font:12.5px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;background:#0b0e12;
+border:1px solid var(--b);border-radius:4px;padding:1px 5px;color:#9fd0a8}
+header.top{position:sticky;top:0;z-index:30;background:#0f1216f2;backdrop-filter:blur(10px);
+border-bottom:1px solid var(--b);padding:12px 26px}
+header.top h1{margin:0;font-size:17.5px} header.top .sub{color:var(--mu);font-size:12.5px;margin-top:2px}
+.bar{display:flex;gap:10px;align-items:center;margin-top:9px;flex-wrap:wrap}
+#s{flex:1;min-width:200px;max-width:360px;padding:8px 12px;border-radius:8px;border:1px solid var(--b);
+background:#11151a;color:var(--tx);font-size:13.5px}
+.prog{flex:none;font-size:12px;color:var(--dim)}
+.pbar{flex:1;min-width:120px;max-width:220px;height:5px;background:var(--b);border-radius:3px;overflow:hidden}
+.pfill{height:100%;width:0;background:var(--ok);transition:width .3s}
+.wrap{display:grid;grid-template-columns:238px 1fr;gap:34px;max-width:1160px;margin:0 auto;padding:24px 26px 90px}
+nav{position:sticky;top:136px;align-self:start;font-size:13px;max-height:calc(100vh - 165px);overflow:auto}
+nav a{display:flex;gap:9px;align-items:baseline;padding:6px 11px;color:var(--mu);text-decoration:none;
+border-left:2px solid var(--b);border-radius:0 6px 6px 0}
+nav a:hover{color:var(--ac);border-left-color:var(--ac);background:#1a1f26}
+nav .mn{flex:none;width:17px;font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums}
+nav .lbl{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin:16px 0 5px;padding-left:11px}
+h2.sec{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--ac);margin:44px 0 8px;
+padding-bottom:9px;border-bottom:1px solid var(--b)}
+h2.sec:first-child{margin-top:0}
+.lead{font-size:16px;color:#cfd6de;border-left:3px solid var(--ac);padding-left:16px;margin:14px 0}
+article.mod{background:var(--card);border:1px solid var(--b);border-radius:12px;padding:20px 22px;margin:16px 0}
+article.mod>header{border-bottom:1px solid var(--b);padding-bottom:12px;margin-bottom:4px}
+.badge{display:inline-block;background:#1e2a3a;color:var(--ac);font-size:11px;letter-spacing:.06em;
+text-transform:uppercase;padding:3px 9px;border-radius:20px;font-weight:600}
+.time{float:right;color:var(--dim);font-size:12px}
+article.mod h3{margin:9px 0 4px;font-size:19px}
+.obj{margin:0;color:var(--mu);font-size:14px}
+.sub{margin:20px 0} .sub h4{margin:0 0 6px;font-size:15.5px;color:var(--tx)}
+.sub p{margin:7px 0}
+.box{border-radius:8px;padding:11px 14px;margin:12px 0;font-size:14px}
+.box b{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:3px}
+.box p{margin:0}
+.box.dato{background:#11241b;border:1px solid #1e4534} .box.dato b{color:var(--ok)}
+.box.warn{background:#2a2211;border:1px solid #4a3a12} .box.warn b{color:var(--wa)}
+.code{border:1px solid var(--b);border-radius:10px;overflow:hidden;margin:18px 0;background:#0d1116}
+.ct{padding:9px 14px;background:#141920;border-bottom:1px solid var(--b);font-size:12px;color:var(--mu);
+letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+.code pre{margin:0;padding:14px;overflow-x:auto;background:#0b0e12}
+.code pre code{background:none;border:0;padding:0;white-space:pre;display:block;color:#c8d3de;font-size:12.5px;line-height:1.6}
+.ce{padding:12px 14px;border-top:1px solid var(--b)}
+.ce b{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--pu)}
+.ce ul{margin:6px 0 0;padding-left:20px} .ce li{margin:4px 0;font-size:14px;color:var(--mu)}
+.quiz{margin-top:22px;padding-top:16px;border-top:1px dashed var(--b2)}
+.quiz h5{margin:0 0 3px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ok)}
+.hint{margin:0 0 11px;font-size:13px;color:var(--dim)}
+.q{margin:8px 0}
+.qb{display:block;width:100%;text-align:left;background:#12161b;border:1px solid var(--b);color:var(--tx);
+padding:10px 14px 10px 34px;border-radius:8px;font:inherit;font-size:14.5px;cursor:pointer;position:relative}
+.qb:hover{border-color:var(--ac);background:#161c23}
+.qb::before{content:"▸";position:absolute;left:14px;color:var(--ac);transition:transform .18s;display:inline-block}
+.q.open .qb::before{transform:rotate(90deg)}
+.q.open .qb{border-color:var(--ok);border-bottom-left-radius:0;border-bottom-right-radius:0}
+.qa{display:none;padding:11px 14px;border:1px solid var(--ok);border-top:0;border-radius:0 0 8px 8px;
+background:#101a15;font-size:14.5px;color:#d4dde5}
+.q.open .qa{display:block}
+.goto{display:inline-block;margin-left:6px;font-size:12.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:11px;margin:16px 0}
+.card{background:var(--card);border:1px solid var(--b);border-radius:10px;padding:14px 15px;cursor:pointer;outline:none}
+.card:hover,.card:focus{border-color:var(--ac)}
+.cf{font-size:22px;font-weight:650;color:var(--ac);letter-spacing:-.02em;line-height:1.25}
+.cl{font-size:13px;color:var(--mu);margin-top:3px}
+.cx{display:none;font-size:13px;color:#c3ccd6;margin-top:9px;padding-top:9px;border-top:1px solid var(--b)}
+.card.on .cx{display:block}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--b);vertical-align:top}
+th{color:var(--mu);font-size:11px;letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid var(--b2)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.win{background:#12241c} tr.win td{color:#d9ffe9}
+.tw{overflow-x:auto} .cap{font-size:12.5px;color:var(--dim);margin-top:-4px}
+.hide{display:none}
+footer{max-width:1160px;margin:0 auto;padding:26px;border-top:1px solid var(--b);color:var(--dim);font-size:12.5px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(max-width:820px){.wrap{grid-template-columns:1fr}nav{position:static;max-height:none}}
+@media print{
+ nav,header.top,.qb::before{display:none} body{background:#fff;color:#000;font-size:11pt}
+ .qa,.cx{display:block!important} article.mod,.card,.box,.code{break-inside:avoid;border-color:#bbb}
+ .card,.box,article.mod{background:#fff} .cf{color:#000}
+}
+</style>
+
+<header class="top">
+  <h1>Curso · Predicción de importaciones por la aduana de Buenaventura</h1>
+  <div class="sub">Nueve módulos desde cero · 5 h 15 de estudio · ruta priorizada para 2 días</div>
+  <div class="bar">
+    <input id="s" placeholder="Buscar concepto, cifra, término…" aria-label="Buscar en el curso">
+    <div class="pbar"><div class="pfill" id="pf"></div></div>
+    <div class="prog" id="pt">0 de 30 repasadas</div>
+  </div>
+</header>
+
+<div class="wrap">
+<nav>
+  <div class="lbl">Empezar</div>
+  <a href="#ruta"><span class="mn">·</span>Ruta de 2 días</a>
+  <div class="lbl">Módulos</div>
+  <a href="#m1"><span class="mn">1</span>Qué construyeron exactamente</a><a href="#m2"><span class="mn">2</span>De dónde salen los datos</a><a href="#m3"><span class="mn">3</span>De 8 GB a una tabla de 173 filas</a><a href="#m4"><span class="mn">4</span>El EDA: qué se descubrió</a><a href="#m5"><span class="mn">5</span>Cómo leer los resultados del Colab</a><a href="#m6"><span class="mn">6</span>Ingeniería de variables</a><a href="#m7"><span class="mn">7</span>Validación temporal</a><a href="#m8"><span class="mn">8</span>Resultados y su lectura</a><a href="#m9"><span class="mn">9</span>Límites y defensa</a>
+  <div class="lbl">Repaso</div>
+  <a href="#cifras"><span class="mn">·</span>Tarjetas de cifras</a>
+  <a href="#jurado"><span class="mn">·</span>Preguntas del jurado</a>
+  <a href="#autoeval"><span class="mn">·</span>Autoevaluación</a>
+</nav>
+
+<main>
+<h2 class="sr-only">Curso de estudio del proyecto</h2>
+
+<h2 class="sec" id="ruta">Ruta de estudio para 2 días</h2>
+<p class="lead">Este curso no reemplaza los guiones que ya tienen: los guiones sirven para <b>decir</b>, este curso sirve para <b>entender</b>. Con dos días, el orden importa más que la exhaustividad. Sigan esta ruta y no se salten los módulos 4, 6 y 7: son los que un jurado técnico va a examinar.</p>
+<div class="tw"><table>
+<thead><tr><th>Momento</th><th>Módulos</th><th>Qué se logra</th><th class="num">Tiempo</th></tr></thead>
+<tbody><tr><td><b>Día 1 · mañana</b></td><td><code>M1 · M2 · M3</code></td><td>Qué es el proyecto, de dónde salen los datos, cómo se limpian</td><td class="num">2 h 30</td></tr><tr><td><b>Día 1 · tarde</b></td><td><code>M4 · M5</code></td><td>El EDA: qué se descubrió y por qué cambió el modelado</td><td class="num">2 h 30</td></tr><tr><td><b>Día 1 · noche</b></td><td><code>Tarjetas</code></td><td>Memorizar las 7 cifras. 20 minutos, sin excusa</td><td class="num">0 h 20</td></tr><tr><td><b>Día 2 · mañana</b></td><td><code>M6 · M7</code></td><td>Ingeniería de variables y validación temporal. El corazón técnico</td><td class="num">3 h 00</td></tr><tr><td><b>Día 2 · tarde</b></td><td><code>M8 · M9</code></td><td>Resultados, límites y las 12 preguntas del jurado</td><td class="num">2 h 30</td></tr><tr><td><b>Día 2 · noche</b></td><td><code>Autoevaluación</code></td><td>Las 30 preguntas del final. Si fallas una, vuelve a su módulo</td><td class="num">1 h 00</td></tr></tbody></table></div>
+<p class="cap">Cada módulo termina con preguntas de comprobación. Respóndanlas en voz alta antes de abrir la respuesta: leer no es aprender.</p>
+
+<h2 class="sec" id="modulos">Los nueve módulos</h2>
+<article class="mod" id="m1">
+  <header><span class="badge">Módulo 1</span><span class="time">25 min</span>
+    <h3>Qué construyeron exactamente</h3><p class="obj"><b>Objetivo:</b> Poder responder en una frase qué es el proyecto, sin muletillas ni tecnicismos vacíos.</p></header>
+  <section class="sub"><h4>La frase de 30 segundos</h4><p>El proyecto toma los archivos públicos de importaciones del DANE, se queda solo con los registros de la aduana de Buenaventura, los convierte en una serie mensual continua de 173 meses, y entrena un modelo que predice el mes siguiente en dos cosas: cuánto dinero (valor CIF en dólares) y cuánto volumen (peso neto en kilogramos).</p><p>Eso es todo. Si en la sustentación te preguntan «¿qué hicieron?», esa es la respuesta. Ni una palabra más hasta que pregunten.</p></section><section class="sub"><h4>Por qué dos objetivos y no uno</h4><p>Porque dinero y volumen no se mueven juntos. Si el valor CIF sube 10 % pero el peso baja 3 %, no está entrando más mercancía: está entrando mercancía más cara. Puede ser inflación, puede ser un cambio de composición (más electrónica, menos granos), puede ser la tasa de cambio.</p><p>Un solo indicador te haría contar una historia falsa. Por eso el proyecto predice los dos por separado y calcula además el precio implícito (dólares por kilogramo) como diagnóstico.</p><div class="box dato"><b>Dato verificado</b><p>En la serie real, la correlación entre CIF y peso neto es de solo <b>0,52</b>. Están relacionados, pero muy lejos de moverse igual. Ese número justifica toda la decisión.</p></div></section><section class="sub"><h4>Qué NO es el proyecto</h4><p>No mide la operación del puerto de Buenaventura. Mide <b>registros aduaneros</b> tramitados en la aduana con código 35. Una mercancía puede entrar físicamente por Buenaventura y declararse en otra aduana, o al revés.</p><p>Esta distinción parece menor y es la trampa más probable de la sustentación. La palabra correcta es siempre «registro aduanero», nunca «tráfico portuario».</p><div class="box warn"><b>Cuidado en la sustentación</b><p>Si el jurado pregunta por el puerto, la respuesta es: «trabajamos con registro aduanero, no con operación portuaria». No intentes defender lo contrario.</p></div></section>
+  <div class="quiz"><h5>Compruebe que lo entendió</h5>
+    <p class="hint">Responda en voz alta antes de abrir. Si no le sale, vuelva a leer el módulo.</p><div class="q"><button class="qb" type="button">1. ¿Por qué el proyecto predice CIF y peso por separado en vez de uno solo?</button>
+      <div class="qa">Porque su correlación mensual es apenas 0,52. Un alza del valor puede venir de más volumen o de mercancía más cara, y con un solo indicador no se puede distinguir. Predecirlos por separado permite además calcular el precio implícito en dólares por kilo.</div></div><div class="q"><button class="qb" type="button">2. El jurado dice: «entonces ustedes midieron cuánta carga movió el puerto de Buenaventura».</button>
+      <div class="qa">No. Medimos registros aduaneros tramitados en la aduana código 35. Es la oficina donde se presenta la declaración, no la operación física del puerto. Son cosas distintas y el proyecto no puede concluir sobre la segunda.</div></div></div>
+</article><article class="mod" id="m2">
+  <header><span class="badge">Módulo 2</span><span class="time">30 min</span>
+    <h3>De dónde salen los datos</h3><p class="obj"><b>Objetivo:</b> Explicar el origen de cada dato y por qué se puede confiar en él.</p></header>
+  <section class="sub"><h4>Tres fuentes, tres papeles</h4><p><b>DANE — microdatos de importaciones.</b> Es la fuente principal. Son 18 paquetes comprimidos que cubren de 2012 a 2026 y pesan 8,1 GB. Cada fila es una línea de declaración de importación: un mes, una aduana, un país de origen, una subpartida arancelaria y sus valores.</p><p><b>Banco de la República vía Datos Abiertos — TRM.</b> La tasa representativa del mercado, diaria. Se convierte a promedio mensual y a volatilidad mensual (la desviación estándar de los días de ese mes).</p><p><b>NOAA — índice ONI.</b> Mide la anomalía de temperatura del Pacífico ecuatorial: es el indicador oficial de El Niño y La Niña. Entra porque el clima afecta cosechas, fletes y rutas marítimas.</p></section><section class="sub"><h4>Por qué el ONI y no otra cosa</h4><p>Esta es una pregunta probable y hay que responderla con cuidado. El ONI <b>no</b> causa las importaciones. Lo que aporta es <b>asociación predictiva</b>: en fases de El Niño o La Niña cambian los patrones de cosecha regional y de costos logísticos, y eso se refleja con rezago en lo que se importa.</p><p>La formulación correcta en la sustentación es: «aporta asociación predictiva, no evidencia causal». Si dices «El Niño causa más importaciones», te van a desarmar.</p><div class="box warn"><b>Cuidado en la sustentación</b><p>Nunca afirmes causalidad de una variable externa. El proyecto entero está construido sobre correlaciones con rezago, y eso es honesto siempre que se diga.</p></div></section><section class="sub"><h4>Trazabilidad: la parte que casi nadie hace</h4><p>Cada archivo descargado quedó registrado en un manifiesto con su huella SHA-256. Una huella SHA-256 es un número de 64 caracteres que se calcula a partir del contenido del archivo: si cambia un solo byte, la huella cambia por completo.</p><p>Eso significa que cualquiera puede verificar que los datos que usaron son exactamente los que publicó el DANE, sin alteraciones. Son 20 archivos con huella registrada.</p><div class="box dato"><b>Dato verificado</b><p>Además de las huellas, existe una auditoría fila por fila en <code>audit_sources_2012_2026.csv</code> con 174 registros: qué archivo se procesó, cuántas filas traía y cuántas quedaron tras filtrar Buenaventura.</p></div></section><div class="code">
+  <div class="ct">Cómo se calcula una huella SHA-256 (build_manifest.py)</div>
+  <pre><code>import hashlib
+
+def sha256(path):
+    digest = hashlib.sha256()          # crea el &quot;molde&quot; de la huella
+    with path.open(&quot;rb&quot;) as source:    # &quot;rb&quot; = leer en binario, byte a byte
+        # lee en bloques de 8 MB para no cargar 700 MB en memoria de golpe
+        for block in iter(lambda: source.read(8 * 1024 * 1024), b&quot;&quot;):
+            digest.update(block)       # va alimentando el molde
+    return digest.hexdigest()          # devuelve los 64 caracteres finales</code></pre>
+  <div class="ce"><b>Línea por línea</b><ul><li><code>hashlib.sha256()</code> crea un objeto acumulador vacío.</li><li><code>iter(lambda: ..., b"")</code> es un truco de Python: repite la lectura hasta que devuelva vacío. Evita cargar el archivo entero.</li><li><code>update()</code> va procesando cada bloque. El resultado es idéntico a procesarlo todo junto, pero usando 8 MB de memoria en vez de 700 MB.</li><li><code>hexdigest()</code> convierte el resultado a texto legible de 64 caracteres.</li></ul></div>
+</div>
+  <div class="quiz"><h5>Compruebe que lo entendió</h5>
+    <p class="hint">Responda en voz alta antes de abrir. Si no le sale, vuelva a leer el módulo.</p><div class="q"><button class="qb" type="button">1. ¿Para qué sirve el SHA-256 del manifiesto?</button>
+      <div class="qa">Para demostrar que los archivos usados son idénticos a los publicados por el DANE. Si alguien alterara un byte, la huella cambiaría y la verificación fallaría. Es la prueba de que los datos no se manipularon.</div></div><div class="q"><button class="qb" type="button">2. ¿Por qué incluyeron el índice ONI?</button>
+      <div class="qa">Porque las fases de El Niño y La Niña se asocian con cambios en cosechas, costos logísticos y rutas marítimas, que a su vez se reflejan con rezago en las importaciones. Aporta asociación predictiva, no evidencia causal.</div></div></div>
+</article><article class="mod" id="m3">
+  <header><span class="badge">Módulo 3</span><span class="time">40 min</span>
+    <h3>De 8 GB a una tabla de 173 filas</h3><p class="obj"><b>Objetivo:</b> Explicar el pipeline de datos y por qué está partido en capas.</p></header>
+  <section class="sub"><h4>Las cuatro capas y para qué sirve cada una</h4><p><b>raw</b> — los archivos originales, intactos. Nunca se editan. Si algo sale mal, siempre se puede volver aquí. Son 8,1 GB de ZIP del DANE más los archivos DIAN.</p><p><b>landing</b> — el primer filtro. De los ~200 millones de registros nacionales quedan solo los 6.703.355 de la aduana 35. Sigue siendo detalle por línea de declaración, pero ya es manejable: 272 MB comprimidos.</p><p><b>trusted</b> — los datos validados y agregados. Aquí nace la serie mensual de 173 filas, más los agregados por país y por capítulo arancelario.</p><p><b>surface</b> — lo que se publica para consumo: la serie, las predicciones y el pronóstico.</p><p>La razón de partirlo así es que cada capa se puede regenerar desde la anterior. Si descubres un error en la limpieza, no vuelves a descargar 8 GB: regeneras desde landing.</p><div class="box dato"><b>Dato verificado</b><p>El salto de escala es brutal: de <b>8,1 GB</b> en raw a <b>18 KB</b> en la serie mensual final. Todo el modelado se hace sobre esas 173 filas.</p></div></section><section class="sub"><h4>El filtro que define el proyecto</h4><p>Todo el proyecto se apoya en una condición: <code>ADUA == 35</code>. Esa columna identifica la aduana y 35 es Buenaventura.</p><p>Verifiqué las 6.703.355 filas del consolidado: <b>todas</b> tienen ADUA=35. Cero filtraciones. Y los 173 meses están completos, sin un solo hueco entre enero de 2012 y mayo de 2026.</p></section><section class="sub"><h4>El problema de los decimales</h4><p>Los archivos del DANE mezclan formatos: unos años usan coma decimal (formato europeo: <code>1.234,56</code>) y otros punto decimal (formato inglés: <code>1234.56</code>). Si lo lees mal, un valor de mil doscientos treinta y cuatro se convierte en un millón doscientos treinta y cuatro mil.</p><p>El código detecta el formato mirando si el valor contiene una coma. Si la tiene, quita los puntos (que son separadores de miles) y convierte la coma en punto. Si no la tiene, lo deja tal cual.</p><div class="box warn"><b>Cuidado en la sustentación</b><p>Esta es una debilidad real del proyecto que conviene conocer: la decisión se toma valor por valor, no columna por columna. Con estos datos funciona, pero un valor como <code>1.234</code> sin coma perdería el punto. Si te preguntan por robustez de la limpieza, esto es lo honesto que puedes mencionar.</p></div></section><div class="code">
+  <div class="ct">El filtro de Buenaventura, por bloques (pipeline.py)</div>
+  <pre><code># NO se carga el archivo entero: se lee de a 150.000 filas
+for chunk in pd.read_csv(stream, usecols=selected, chunksize=150_000,
+                         encoding=&quot;latin-1&quot;, sep=separator, low_memory=False):
+    chunk = normalize_numeric(chunk.rename(columns=mapping))
+    total_rows += len(chunk)
+
+    part = chunk.loc[chunk[&quot;ADUA&quot;].eq(35)].copy()   # &lt;-- EL FILTRO
+    if part.empty:
+        continue
+
+    part[&quot;SOURCE_ARCHIVE&quot;] = archive_name   # de qué ZIP vino
+    part[&quot;SOURCE_FILE&quot;]    = source_name    # de qué CSV interno
+    part[&quot;SOURCE_MONTH&quot;]   = source_month   # de qué mes
+    kept_rows += len(part)
+    part.to_csv(sink, index=False, header=not wrote_header)</code></pre>
+  <div class="ce"><b>Línea por línea</b><ul><li><code>chunksize=150_000</code> es la clave: lee el archivo por pedazos. Sin esto, un CSV de 3 GB reventaría la memoria.</li><li><code>encoding="latin-1"</code> porque los archivos del DANE usan esa codificación, no UTF-8. Con la codificación equivocada, las tildes se rompen.</li><li><code>chunk["ADUA"].eq(35)</code> devuelve una serie de Verdadero/Falso; <code>.loc[...]</code> se queda solo con las filas Verdaderas.</li><li>Las tres columnas <code>SOURCE_*</code> son trazabilidad: permiten saber después de qué archivo salió cada fila. Es lo que hace posible la auditoría.</li></ul></div>
+</div>
+  <div class="quiz"><h5>Compruebe que lo entendió</h5>
+    <p class="hint">Responda en voz alta antes de abrir. Si no le sale, vuelva a leer el módulo.</p><div class="q"><button class="qb" type="button">1. ¿Por qué se lee el archivo por bloques y no completo?</button>
+      <div class="qa">Porque los archivos del DANE son de varios gigabytes y no caben en memoria. Leyendo de a 150.000 filas se procesa cualquier tamaño con memoria constante. Es la misma razón por la que el EDA, que sí carga todo de una vez, necesita 8 GB de RAM.</div></div><div class="q"><button class="qb" type="button">2. ¿Qué garantiza que la serie mensual no tiene huecos?</button>
+      <div class="qa">Después de agregar por mes se aplica asfreq('MS'), que fuerza la frecuencia mensual y deja vacíos los meses ausentes. Luego se verifica que no haya nulos y se lanza un error si los hay. Además hay una prueba automatizada que compara contra el rango completo de fechas esperado.</div></div></div>
+</article><article class="mod" id="m4">
+  <header><span class="badge">Módulo 4</span><span class="time">45 min</span>
+    <h3>El EDA: qué se descubrió</h3><p class="obj"><b>Objetivo:</b> Dominar los seis hallazgos que cambiaron el modelado. Esto es lo que más pregunta un jurado.</p></header>
+  <section class="sub"><h4>Qué es un EDA y por qué va antes</h4><p>EDA es análisis exploratorio de datos. Es la fase donde miras los datos <b>antes</b> de modelar, para descubrir qué forma tienen, qué está roto y qué decisiones te van a exigir.</p><p>La respuesta a «¿por qué no entrenaron directamente?» es: porque sin EDA no habrían sabido que la serie no es estacionaria, que hay fuga de información evidente, que hubo un cambio de nivel en 2021, ni qué rezagos usar. Cada hallazgo del EDA se convirtió en una decisión del modelo.</p></section><section class="sub"><h4>Hallazgo 1 · La serie tiene memoria</h4><p>La autocorrelación de rezago 1 es <b>0,871</b>. Eso significa que el valor de un mes se parece muchísimo al del mes anterior. En rezago 12 (un año atrás) baja a 0,385.</p><p><b>Decisión que produjo:</b> usar el pasado reciente como predictor. Por eso hay rezagos de 1, 2, 3, 6 y 12 meses. Si la autocorrelación hubiera sido cercana a cero, los rezagos no habrían servido de nada.</p><div class="box dato"><b>Dato verificado</b><p>Correlación de cada rezago con el objetivo: lag 1 = <b>0,828</b> · lag 2 = 0,784 · lag 3 = 0,774 · lag 6 = 0,628 · lag 12 = 0,500. La media móvil de 3 meses llega a <b>0,850</b>, la más alta de todas.</p></div></section><section class="sub"><h4>Hallazgo 2 · No es estacionaria</h4><p>Una serie es <b>estacionaria</b> cuando su media y su varianza no cambian con el tiempo. La prueba ADF (Dickey-Fuller aumentada) da un p-valor de <b>0,481</b> sobre la serie en nivel. Como es mayor que 0,05, no se puede rechazar que haya raíz unitaria: la serie <b>no</b> es estacionaria.</p><p>Al aplicar logaritmo y diferenciar, el p-valor cae a <b>0,000</b>: ahí sí es estacionaria.</p><p><b>Decisión que produjo:</b> no usar ARIMA sobre la serie cruda, e incluir una variable de tendencia explícita en el modelo supervisado.</p></section><section class="sub"><h4>Hallazgo 3 · Hay estacionalidad mensual</h4><p>Agosto está <b>7,1 %</b> por encima del promedio y octubre <b>5,8 %</b>. Febrero está <b>5,2 %</b> por debajo y junio <b>5,3 %</b>.</p><p><b>Decisión que produjo:</b> codificar el mes con seno y coseno en vez de como número del 1 al 12. La razón es que diciembre (12) y enero (1) son meses consecutivos, pero como números están lo más lejos posible. Con seno y coseno quedan juntos en un círculo.</p></section><section class="sub"><h4>Hallazgo 4 · Fuga de información evidente</h4><p>El valor FOB del mismo mes correlaciona <b>0,9971</b> con el CIF. El flete del mismo mes, <b>0,9066</b>. Son casi el mismo número.</p><p>Usarlos como predictores daría una precisión espectacular y completamente falsa, porque en el momento de predecir junio no conoces el FOB de junio: se conoce al mismo tiempo que el CIF que quieres predecir.</p><p><b>Decisión que produjo:</b> ninguna variable contemporánea entra al modelo. Solo entran sus rezagos. Y hay una prueba automatizada que lo verifica en cada ejecución.</p><div class="box warn"><b>Cuidado en la sustentación</b><p>Esta es la pregunta más probable de toda la sustentación. Si un jurado quiere probarte, va a preguntar por la fuga de información. Ten esta respuesta lista.</p></div></section><section class="sub"><h4>Hallazgo 5 · Cambio de nivel en 2021</h4><p>La prueba de Kolmogórov-Smirnov compara dos distribuciones. Entre el periodo histórico y el reciente da un estadístico de <b>0,853</b> con p-valor <b>0,000</b>: son distribuciones distintas. La mediana se desplazó <b>45,8 %</b> hacia arriba.</p><p><b>Decisión que produjo:</b> la validación usa solo los últimos 24 meses, no toda la historia. Evaluar contra 2013 no diría nada útil sobre 2026.</p><div class="box dato"><b>Dato verificado</b><p>En cifras anuales: 2020 cerró en 11.224 M de dólares y 2022 en 20.285 M. El mínimo histórico es junio de 2020 con 694 M (pandemia); el máximo es mayo de 2026 con 1.980 M.</p></div></section><section class="sub"><h4>Hallazgo 6 · Los datos están limpios</h4><p>Solo el <b>0,005 %</b> de las filas tiene algún valor nulo. Los duplicados exactos son el <b>0,081 %</b> y se decidió <b>no</b> eliminarlos, porque dos líneas comerciales distintas pueden compartir todos los campos publicados sin ser un error.</p><p><b>Decisión que produjo:</b> no fue necesaria imputación agresiva. La calidad permitió trabajar con los datos casi como vienen.</p></section><div class="code">
+  <div class="ct">Por qué seno y coseno para el mes (modeling.py)</div>
+  <pre><code>features[&quot;mes_sin&quot;] = np.sin(2 * np.pi * features.index.month / 12)
+features[&quot;mes_cos&quot;] = np.cos(2 * np.pi * features.index.month / 12)</code></pre>
+  <div class="ce"><b>Línea por línea</b><ul><li>Si usaras el mes como número, el modelo vería diciembre=12 y enero=1 como valores muy lejanos, cuando son meses consecutivos.</li><li><code>2 * np.pi * mes / 12</code> convierte el mes en un ángulo: enero = 0°, junio = 180°, diciembre = 330°.</li><li>El seno y el coseno de ese ángulo dan dos coordenadas sobre un círculo. Diciembre y enero quedan pegados, que es la verdad del calendario.</li><li>Se necesitan las <b>dos</b> funciones: con solo el seno, marzo y septiembre darían el mismo valor.</li></ul></div>
+</div>
+  <div class="quiz"><h5>Compruebe que lo entendió</h5>
+    <p class="hint">Responda en voz alta antes de abrir. Si no le sale, vuelva a leer el módulo.</p><div class="q"><button class="qb" type="button">1. ¿Qué significa que la ADF dé p = 0,481?</button>
+      <div class="qa">Que no se puede rechazar la hipótesis de raíz unitaria, es decir, la serie en nivel no es estacionaria: su media cambia con el tiempo. Al aplicar logaritmo y diferenciar, el p-valor cae a 0,000 y sí resulta estacionaria. Por eso el modelo incluye una variable de tendencia explícita.</div></div><div class="q"><button class="qb" type="button">2. ¿Por qué no usaron el FOB del mismo mes si correlaciona 0,9971 con el CIF?</button>
+      <div class="qa">Precisamente por eso: es fuga de información. En el momento de pronosticar junio no se conoce el FOB de junio, se publica junto con el CIF que se quiere predecir. Usarlo daría una precisión irreal. Solo entran sus rezagos, y hay una prueba automatizada que lo verifica.</div></div><div class="q"><button class="qb" type="button">3. ¿Por qué codificaron el mes con seno y coseno?</button>
+      <div class="qa">Porque el calendario es cíclico. Como número, diciembre (12) y enero (1) están lo más lejos posible, pero son meses consecutivos. Con seno y coseno el mes se convierte en un punto de un círculo y esa continuidad se conserva.</div></div><div class="q"><button class="qb" type="button">4. ¿Por qué validan con 24 meses y no con toda la historia?</button>
+      <div class="qa">Porque la prueba KS detectó un cambio de distribución: estadístico 0,853 con p = 0,000 y un desplazamiento de la mediana de 45,8 %. La serie de 2013 se comporta distinto a la de 2025. Evaluar contra datos antiguos no diría nada útil sobre el desempeño actual.</div></div></div>
+</article><article class="mod" id="m5">
+  <header><span class="badge">Módulo 5</span><span class="time">35 min</span>
+    <h3>Cómo leer los resultados del Colab</h3><p class="obj"><b>Objetivo:</b> Saber qué salió en cada notebook y qué significa cada número que aparece en pantalla.</p></header>
+  <section class="sub"><h4>Los cinco notebooks y qué imprime cada uno</h4><p>Cada notebook es una etapa. Se ejecutan en orden y cada uno deja una salida verificable en pantalla. Esto es lo que van a ver y lo que significa.</p></section><section class="sub"><h4>Notebook 00 · Descargas</h4><p>Salida real: <code>Archivos disponibles: 18/18</code></p><p>Significa que los 18 paquetes del DANE están presentes y son ZIP válidos. La verificación no solo mira que el archivo exista: abre el ZIP y comprueba que tenga contenido.</p><p>El flag <code>DESCARGAR_FALTANTES = False</code> evita volver a bajar 8 GB si ya están. Si faltara alguno, se cambia a <code>True</code>.</p></section><section class="sub"><h4>Notebook 01 · Consolidación</h4><p>Salida real: <code>Consolidado existente: impo_buenaventura_2012_2026.csv.gz</code> y <code>Serie actualizada existente</code></p><p>Significa que el filtro ya se aplicó y la serie mensual ya está construida, así que se salta el trabajo pesado. La última celda muestra la cola de la serie y verifica con dos <code>assert</code> que no falte ningún mes y que no haya nulos en CIF ni en peso.</p><p>Si esos <code>assert</code> pasan sin error, la serie está íntegra. Es una prueba, no un adorno.</p></section><section class="sub"><h4>Notebook 02 · Variables externas</h4><p>Salida real: <code>Variables externas: ['trm_cop_usd', 'trm_volatilidad', 'oni_anomalia', 'enso_fase']</code> y <code>Control de fuga temporal aprobado: 26 predictoras</code></p><p>La segunda línea es la más importante del notebook. Verifica que ninguna variable contemporánea entró y que todas las predictoras son rezagos, medias móviles o calendario. Son 26 en total.</p><p>Si alguien mete por error una variable del mismo mes, ese <code>assert</code> falla y el notebook se detiene.</p><div class="box dato"><b>Dato verificado</b><p>Ojo con un detalle: <code>enso_fase</code> aparece en la lista de externas pero <b>nunca llega al modelo</b>, porque es texto y el código selecciona solo columnas numéricas. Es un cabo suelto real del proyecto.</p></div></section><section class="sub"><h4>Notebook 03 · EDA</h4><p>Es el más largo: 54 celdas de código, cada una respondiendo una de las 52 preguntas, con su hallazgo y su implicación escritos arriba en markdown.</p><p>La primera celda ejecuta <code>%run "eda_compute.py"</code>, que carga los 5,6 millones de registros del corte 2012-2024 y calcula las 60 métricas de golpe. Después cada celda solo muestra un pedazo del resultado.</p><p><b>Advertencia práctica:</b> esa carga ocupa 2.249 MB en pandas y con las copias intermedias necesita cerca de 8 GB de RAM. En Colab cabe; en un portátil de 8 GB puede morir sin mensaje.</p></section><section class="sub"><h4>Notebook 04 · Modelo</h4><p>Salida real: una tabla de 6 filas con las métricas de los 3 modelos por cada objetivo, y otra de 2 filas con el pronóstico.</p><p>Corre en menos de 6 segundos. Lo que hace por dentro: 24 predicciones para cada modelo y cada objetivo (144 en total), reentrenar los dos ganadores con toda la historia, y pronosticar junio de 2026.</p></section><section class="sub"><h4>Cómo leer la tabla de métricas</h4><p>Cuatro columnas de error, todas donde <b>menor es mejor</b>:</p><p><b>MAE</b> — error absoluto medio. En promedio, cuántos dólares se falla por mes. Fácil de explicar, pero no se puede comparar entre CIF (dólares) y peso (kilos).</p><p><b>RMSE</b> — raíz del error cuadrático medio. Como eleva al cuadrado antes de promediar, castiga más los errores grandes. Es el que se usa para construir el intervalo del 80 %.</p><p><b>MAPE</b> — error porcentual medio. Promedia el error relativo de cada mes por igual, así que un mes flojo pesa lo mismo que uno enorme.</p><p><b>WAPE</b> — error absoluto total dividido por el total observado. Es el principal del proyecto porque pondera por volumen: los meses grandes pesan más, que es lo que importa cuando se habla de comercio exterior.</p></section><div class="code">
+  <div class="ct">La celda de arranque que hace funcionar Colab y Windows por igual</div>
+  <pre><code>try:
+    from google.colab import drive
+    drive.mount(&#x27;/content/drive&#x27;)                       # si estamos en Colab
+    PROJECT_ROOT = Path(&#x27;/content/drive/MyDrive/Proyecto_Buenaventura_Final&#x27;)
+except ImportError:                                     # si NO estamos en Colab
+    PROJECT_ROOT = Path.cwd().resolve().parent if Path.cwd().name == &#x27;src&#x27; else Path.cwd().resolve()
+
+os.environ[&#x27;PROYECTO_BUENAVENTURA_ROOT&#x27;] = str(PROJECT_ROOT)
+os.chdir(PROJECT_ROOT / &#x27;src&#x27;)
+sys.path.insert(0, str(PROJECT_ROOT / &#x27;src&#x27;))</code></pre>
+  <div class="ce"><b>Línea por línea</b><ul><li><code>try / except ImportError</code>: intenta importar la librería de Colab. Si falla, es porque estamos en una máquina local.</li><li><code>drive.mount()</code> conecta Google Drive para que los datos sean accesibles como carpetas normales.</li><li><code>os.environ[...]</code> define una variable de entorno que el resto de módulos lee para saber dónde está el proyecto.</li><li><code>os.chdir()</code> y <code>sys.path.insert()</code> son necesarios porque los módulos se importan de forma plana: solo funcionan si Python está parado dentro de <code>src</code>.</li></ul></div>
+</div>
+  <div class="quiz"><h5>Compruebe que lo entendió</h5>
+    <p class="hint">Responda en voz alta antes de abrir. Si no le sale, vuelva a leer el módulo.</p><div class="q"><button class="qb" type="button">1. ¿Qué significa la salida «Control de fuga temporal aprobado: 26 predictoras»?</button>
+      <div class="qa">Que se verificó que ninguna de las 26 variables predictoras es contemporánea: todas son rezagos, medias móviles o calendario. Es un assert; si alguien introdujera una variable del mismo mes, el notebook se detendría.</div></div><div class="q"><button class="qb" type="button">2. ¿Por qué WAPE y no MAPE como métrica principal?</button>
+      <div class="qa">Porque WAPE divide el error total entre el volumen total, así que los meses de mayor movimiento pesan más. MAPE promedia el error relativo de todos los meses por igual, y en comercio exterior fallar en un mes pequeño no es tan grave como fallar en uno grande.</div></div></div>
+</article><article class="mod" id="m6">
+  <header><span class="badge">Módulo 6</span><span class="time">40 min</span>
+    <h3>Ingeniería de variables</h3><p class="obj"><b>Objetivo:</b> Explicar de dónde salen las 26 predictoras y por qué todas miran hacia atrás.</p></header>
+  <section class="sub"><h4>Qué es un rezago</h4><p>Un rezago es el valor de una variable en un momento anterior. <code>cif_usd_lag_1</code> en la fila de mayo contiene el CIF de abril. <code>cif_usd_lag_12</code> contiene el de mayo del año pasado.</p><p>Es la forma de convertir un problema de series de tiempo en un problema de regresión normal: en vez de «predecir el futuro», el modelo aprende «dado lo que pasó en los meses anteriores, ¿cuánto será este mes?».</p><div class="box dato"><b>Dato verificado</b><p>Verifiqué la alineación en los 173 meses: <b>cero discrepancias</b> entre <code>cif_usd_lag_1</code> y el valor de <code>cif_usd</code> del mes anterior. Los rezagos están correctamente construidos.</p></div></section><section class="sub"><h4>Las 26 predictoras, por grupo</h4><p><b>Rezagos del propio objetivo (10):</b> CIF y peso en los rezagos 1, 2, 3, 6 y 12.</p><p><b>Medias móviles (4):</b> media de 3 y de 12 meses, para CIF y para peso. Suavizan el ruido. La media de 3 es la variable con mayor correlación de todas: 0,850.</p><p><b>Rezagos internos (6):</b> FOB, flete, seguros, registros, países de origen y capítulos, todos del mes anterior.</p><p><b>Calendario y tendencia (3):</b> seno y coseno del mes, más un contador que va de 0 a 172.</p><p><b>Externas (3):</b> TRM promedio, volatilidad de la TRM y anomalía ONI, todas del mes anterior.</p></section><section class="sub"><h4>La regla de oro: todo desplazado</h4><p>Cada variable observada pasa por <code>.shift(1)</code> antes de entrar al modelo. Eso corre los valores una fila hacia abajo, de forma que la fila de junio contiene datos de mayo.</p><p>El resultado es que para pronosticar junio de 2026 solo se usa información disponible hasta el 31 de mayo. Ni un dato del futuro.</p><p>Incluso las medias móviles se calculan sobre la serie ya desplazada: <code>series[target].shift(1).rolling(3).mean()</code>. Primero desplazar, después promediar. Si fuera al revés, la media incluiría el mes que se quiere predecir.</p></section><section class="sub"><h4>Multicolinealidad: un problema conocido</h4><p>El VIF (factor de inflación de varianza) mide cuánto se explican las variables entre sí. Valores por encima de 10 ya son preocupantes. Aquí: <code>cif_media_3</code> tiene VIF de <b>2.058</b> y <code>cif_media_6</code> de <b>2.085</b>.</p><p>Es esperable: la media de 3 meses contiene los rezagos 1, 2 y 3. Están midiendo casi lo mismo.</p><p><b>Por eso se eligió Ridge.</b> Ridge es una regresión lineal con penalización: castiga los coeficientes grandes y reparte el peso entre variables correlacionadas en vez de darle todo a una. Con multicolinealidad tan alta, una regresión ordinaria daría coeficientes inestables y absurdos.</p><div class="box warn"><b>Cuidado en la sustentación</b><p>Si el jurado pregunta «¿no les preocupa la multicolinealidad?», la respuesta es: sí, la medimos, el VIF llega a 2.058 en las medias móviles, y por eso usamos Ridge con alpha=10, que es justamente el modelo diseñado para ese escenario.</p></div></section><div class="code">
+  <div class="ct">Construcción de las variables (modeling.py)</div>
+  <pre><code>for target in TARGETS:                        # [&#x27;cif_usd&#x27;, &#x27;peso_neto_kg&#x27;]
+    for lag in LAGS:                          # [1, 2, 3, 6, 12]
+        features[f&quot;{target}_lag_{lag}&quot;] = series[target].shift(lag)
+
+    # OJO al orden: primero shift(1), después rolling
+    features[f&quot;{target}_media_3&quot;]  = series[target].shift(1).rolling(3).mean()
+    features[f&quot;{target}_media_12&quot;] = series[target].shift(1).rolling(12).mean()
+
+features[&quot;tendencia&quot;] = np.arange(len(features))          # 0, 1, 2, ... 172
+
+# las externas también se desplazan un mes
+external_numeric = external.select_dtypes(include=&quot;number&quot;).shift(1).add_suffix(&quot;_lag_1&quot;)
+features = features.join(external_numeric, how=&quot;left&quot;)</code></pre>
+  <div class="ce"><b>Línea por línea</b><ul><li><code>.shift(lag)</code> corre la columna hacia abajo. Con lag=1, la fila de junio recibe el valor de mayo.</li><li><code>.shift(1).rolling(3).mean()</code>: el orden es crítico. Desplazar primero garantiza que la media de 3 meses termine en el mes anterior, sin tocar el mes a predecir.</li><li><code>np.arange(len(features))</code> crea el contador de tendencia. Le permite al modelo capturar el crecimiento de largo plazo que la ADF detectó.</li><li><code>select_dtypes(include="number")</code> descarta columnas de texto. Es por esto que <code>enso_fase</code> nunca llega al modelo.</li></ul></div>
+</div>
+  <div class="quiz"><h5>Compruebe que lo entendió</h5>
+    <p class="hint">Responda en voz alta antes de abrir. Si no le sale, vuelva a leer el módulo.</p><div class="q"><button class="qb" type="button">1. ¿Por qué el shift va antes del rolling y no después?</button>
+      <div class="qa">Porque rolling(3).mean() sin desplazar incluiría el mes que se quiere predecir dentro del promedio. Al hacer shift(1) primero, la ventana de 3 meses termina en el mes anterior y no hay fuga.</div></div><div class="q"><button class="qb" type="button">2. El VIF de las medias móviles pasa de 2.000. ¿Eso no invalida el modelo?</button>
+      <div class="qa">No, pero exige elegir bien el algoritmo. Ridge incluye una penalización que reparte el peso entre variables correlacionadas en vez de asignárselo todo a una, lo que estabiliza los coeficientes. Es precisamente el modelo indicado cuando hay multicolinealidad alta.</div></div><div class="q"><button class="qb" type="button">3. ¿Cuántas predictoras hay y de qué tipo?</button>
+      <div class="qa">26: diez rezagos de los objetivos, cuatro medias móviles, seis rezagos de variables internas, tres de calendario y tendencia, y tres externas. Todas desplazadas al menos un mes.</div></div></div>
+</article><article class="mod" id="m7">
+  <header><span class="badge">Módulo 7</span><span class="time">40 min</span>
+    <h3>Validación temporal</h3><p class="obj"><b>Objetivo:</b> Defender el método de evaluación. Es la parte más técnica y la que distingue un trabajo serio.</p></header>
+  <section class="sub"><h4>Por qué NO se puede partir al azar</h4><p>En un problema normal de machine learning se reparten los datos al azar: 80 % para entrenar, 20 % para probar. En series de tiempo eso <b>está prohibido</b>.</p><p>La razón: si el conjunto de entrenamiento contiene meses posteriores a los de prueba, el modelo está viendo el futuro. Aprende de 2026 para predecir 2024. El resultado sería excelente y completamente inútil.</p><p>En este proyecto no aparece <code>train_test_split</code> en ninguna línea de código. La partición siempre es cronológica.</p></section><section class="sub"><h4>Qué es walk-forward</h4><p>Se traduce como validación de ventana expansiva. Funciona así:</p><p>Para predecir junio de 2024, se entrena con todo lo anterior a junio de 2024 y se predice ese mes. Después se avanza: para julio de 2024, se entrena con todo lo anterior a julio (incluyendo ya el junio real) y se predice julio. Y así 24 veces.</p><p>Cada predicción simula exactamente lo que habría pasado si el modelo hubiera estado en producción ese mes: solo con la información disponible en ese momento.</p><p>El resultado son 24 predicciones honestas por modelo y por objetivo. Con 3 modelos y 2 objetivos, son 144 predicciones en total.</p><div class="box dato"><b>Dato verificado</b><p>El modelo se reentrena <b>desde cero en cada uno de los 24 pasos</b>. No es que se entrene una vez y se prediga 24 veces: son 24 entrenamientos independientes, cada uno con un mes más de historia.</p></div></section><section class="sub"><h4>El comparador honesto</h4><p>Un WAPE de 7,34 % no significa nada por sí solo. ¿Es bueno? ¿Es malo? Depende de contra qué.</p><p>Por eso el proyecto incluye un <b>naive estacional</b>: un modelo tonto que predice «este mes será igual que el mismo mes del año pasado». Es el piso mínimo que cualquier modelo debería superar.</p><p>Resultado: naive da WAPE de <b>16,49 %</b> en CIF y <b>13,66 %</b> en peso. Los modelos entrenados dan 7,34 % y 9,51 %. Es decir, reducen el error a menos de la mitad en CIF.</p><p>Sin ese comparador, cualquier número sería indefendible.</p></section><section class="sub"><h4>Un detalle que conviene conocer</h4><p>Ridge obtuvo 7,3403 % en CIF y HistGradientBoosting 7,3470 %. Esa diferencia es de <b>0,007 puntos porcentuales</b> sobre 24 observaciones: es indistinguible del ruido.</p><p>Además, la selección del ganador se hizo sobre la misma ventana con la que se reporta el resultado, lo que sesga el número ligeramente hacia abajo.</p><p>En peso neto sí hay diferencia clara: HGB da 9,51 % contra 10,16 % de Ridge, y ahí la elección es defendible.</p><p><b>Cómo responderlo:</b> «En peso la diferencia es clara. En CIF los dos modelos empatan en la práctica; elegimos Ridge por interpretabilidad, ya que es lineal y sus coeficientes se pueden leer». Eso es honesto y te deja bien parado.</p><div class="box warn"><b>Cuidado en la sustentación</b><p>No defiendas los 0,007 puntos como si fueran un hallazgo. Si insistes en que Ridge «es mejor», un jurado con criterio estadístico te va a corregir. Adelántate.</p></div></section><section class="sub"><h4>El sesgo del modelo: algo que nadie ha notado</h4><p>Revisando las 24 predicciones de Ridge en CIF encontré un patrón: <b>19 de 24 meses quedaron por debajo del valor real</b>. El sesgo medio es de −4,61 %.</p><p>La causa es estructural: la serie viene creciendo con fuerza y un modelo construido sobre rezagos y medias móviles siempre va «un paso atrás» de la tendencia. Los tres modelos lo tienen; el naive es el peor con −16,50 %.</p><p>El peor mes fue julio de 2025, con −19,8 %. El mejor, septiembre de 2025, con −1,8 %.</p><p><b>Si te preguntan por esto, es una oportunidad:</b> demuestra que revisaron los residuos y no solo el promedio. La respuesta es que el sesgo es conocido, viene de la tendencia creciente, y se corregiría añadiendo un término de deriva o modelando la primera diferencia.</p></section><div class="code">
+  <div class="ct">El corazón del proyecto: walk_forward (modeling.py)</div>
+  <pre><code>def walk_forward(target, model_name, model, data, test_months=24):
+    feature_cols = [c for c in data.columns if c not in TARGETS]
+    model_data   = data[[target] + feature_cols].dropna()
+    test_dates   = model_data.index[-test_months:]      # los últimos 24 meses
+
+    predictions = []
+    for date in test_dates:
+        # SOLO el pasado estricto: index &lt; date
+        train = model_data.loc[model_data.index &lt; date]
+        model.fit(train[feature_cols], train[target])   # reentrena desde cero
+
+        p = model.predict(model_data.loc[[date], feature_cols])[0]
+        predictions.append(max(float(p), 0.0))          # nunca negativo
+
+    actual = model_data.loc[test_dates, target]
+    return metrics(actual, predictions), ...</code></pre>
+  <div class="ce"><b>Línea por línea</b><ul><li><code>model_data.index &lt; date</code> es la línea que garantiza que no hay fuga: estrictamente menor, nunca menor o igual.</li><li><code>model.fit()</code> dentro del bucle significa 24 entrenamientos independientes, uno por mes evaluado.</li><li><code>.dropna()</code> elimina los primeros 12 meses, que no tienen rezago de 12. Quedan 161 filas utilizables.</li><li><code>max(p, 0.0)</code> evita predicciones negativas, que no tendrían sentido para dinero o peso.</li></ul></div>
+</div>
+  <div class="quiz"><h5>Compruebe que lo entendió</h5>
+    <p class="hint">Responda en voz alta antes de abrir. Si no le sale, vuelva a leer el módulo.</p><div class="q"><button class="qb" type="button">1. ¿Por qué no usaron train_test_split?</button>
+      <div class="qa">Porque reparte los datos al azar y en series de tiempo eso mete meses futuros en el entrenamiento. El modelo aprendería del futuro para predecir el pasado, dando un resultado excelente e inútil. La partición debe ser cronológica.</div></div><div class="q"><button class="qb" type="button">2. Explique en una frase qué es walk-forward.</button>
+      <div class="qa">Es entrenar con todo lo anterior a un mes, predecir ese mes, avanzar uno y repetir. Cada predicción usa solo la información que habría estado disponible en ese momento real, y se repite 24 veces.</div></div><div class="q"><button class="qb" type="button">3. ¿Para qué sirve el modelo naive estacional?</button>
+      <div class="qa">Es el piso de comparación. Predice que cada mes será igual al mismo mes del año anterior. Da WAPE de 16,49 % en CIF, y los modelos entrenados bajan a 7,34 %. Sin ese comparador, un WAPE aislado no se podría interpretar.</div></div><div class="q"><button class="qb" type="button">4. El jurado dice: «Ridge y HGB dan casi lo mismo en CIF, ¿cómo eligieron?»</button>
+      <div class="qa">Correcto, en CIF la diferencia es de 0,007 puntos porcentuales, indistinguible del ruido, y elegimos Ridge por interpretabilidad al ser un modelo lineal. En peso neto sí hay diferencia clara: HGB da 9,51 % contra 10,16 % de Ridge.</div></div></div>
+</article><article class="mod" id="m8">
+  <header><span class="badge">Módulo 8</span><span class="time">30 min</span>
+    <h3>Resultados y su lectura</h3><p class="obj"><b>Objetivo:</b> Dominar los números finales y saber qué significan de verdad.</p></header>
+  <section class="sub"><h4>La tabla que hay que saber</h4><p>Seis filas: tres modelos por dos objetivos. Los ganadores están en negrita.</p></section><section class="sub"><h4>El pronóstico de junio de 2026</h4><p><b>CIF: USD 2.070.875.309,85</b> — unos 2.070,9 millones de dólares. Intervalo del 80 %: entre 1.877,0 y 2.264,7 millones.</p><p><b>Peso neto: 1.173.604.146,69 kg</b> — unos 1.173,6 millones de kilogramos. Intervalo: entre 1.004,6 y 1.342,7 millones.</p><p>Ambos se entrenaron con toda la historia hasta mayo de 2026.</p></section><section class="sub"><h4>Cómo se construye el intervalo del 80 %</h4><p>Se toma el RMSE del backtest y se multiplica por 1,2816, que es el valor de la distribución normal que deja el 80 % central. El resultado se suma y se resta a la predicción.</p><p>Es una <b>aproximación</b>, y el proyecto lo dice. Dos razones por las que no es exacto: asume que los errores se distribuyen normalmente, y es simétrico aunque el modelo se entrenó en escala logarítmica, donde la incertidumbre real es asimétrica.</p><p>Declararlo como aproximado es lo correcto. Presentarlo como un intervalo de confianza riguroso sería un error.</p></section><section class="sub"><h4>Qué significa un WAPE de 7,34 %</h4><p>Que si sumas todos los errores absolutos de los 24 meses y los divides entre el total realmente importado en esos 24 meses, el resultado es 7,34 %.</p><p>En términos prácticos: sobre un mes típico de 1.800 millones de dólares, el error ronda los 130 millones.</p><p>Para un pronóstico de comercio exterior a un mes, con datos públicos y sin información privilegiada, es un resultado sólido.</p></section><div class="tw"><table>
+<thead><tr><th>Objetivo</th><th>Modelo</th><th class="num">MAE</th><th class="num">RMSE</th>
+<th class="num">MAPE %</th><th class="num">WAPE %</th></tr></thead>
+<tbody><tr class="win"><td>cif_usd</td><td><b>Ridge</b> ★</td><td class="num">124,18 M</td><td class="num">151,26 M</td><td class="num">7,319</td><td class="num"><b>7,340</b></td></tr><tr><td>cif_usd</td><td><b>HistGradientBoosting</b></td><td class="num">124,29 M</td><td class="num">154,09 M</td><td class="num">7,238</td><td class="num"><b>7,347</b></td></tr><tr><td>cif_usd</td><td><b>Naive_12</b></td><td class="num">278,92 M</td><td class="num">298,30 M</td><td class="num">16,504</td><td class="num"><b>16,487</b></td></tr><tr class="win"><td>peso_neto_kg</td><td><b>HistGradientBoosting</b> ★</td><td class="num">112,12 M</td><td class="num">131,90 M</td><td class="num">9,427</td><td class="num"><b>9,509</b></td></tr><tr><td>peso_neto_kg</td><td><b>Ridge</b></td><td class="num">119,75 M</td><td class="num">136,11 M</td><td class="num">10,080</td><td class="num"><b>10,155</b></td></tr><tr><td>peso_neto_kg</td><td><b>Naive_12</b></td><td class="num">161,06 M</td><td class="num">180,93 M</td><td class="num">13,550</td><td class="num"><b>13,658</b></td></tr></tbody></table></div>
+<p class="cap">★ modelo seleccionado. Menor es mejor en las cuatro métricas. MAE y RMSE están en millones
+(dólares para CIF, kilogramos para peso).</p>
+  <div class="quiz"><h5>Compruebe que lo entendió</h5>
+    <p class="hint">Responda en voz alta antes de abrir. Si no le sale, vuelva a leer el módulo.</p><div class="q"><button class="qb" type="button">1. ¿Cuál es el pronóstico y con qué incertidumbre?</button>
+      <div class="qa">Para junio de 2026: 2.070,9 millones de dólares en valor CIF, con intervalo aproximado del 80 % entre 1.877,0 y 2.264,7 millones; y 1.173,6 millones de kilogramos en peso neto, entre 1.004,6 y 1.342,7 millones.</div></div><div class="q"><button class="qb" type="button">2. ¿Por qué el intervalo del 80 % es «aproximado»?</button>
+      <div class="qa">Porque se construye con el RMSE del backtest asumiendo errores normales y de forma simétrica, mientras el modelo se entrenó en escala logarítmica, donde la incertidumbre real es asimétrica. Es una aproximación razonable, no un intervalo de confianza formal.</div></div></div>
+</article><article class="mod" id="m9">
+  <header><span class="badge">Módulo 9</span><span class="time">30 min</span>
+    <h3>Límites y defensa</h3><p class="obj"><b>Objetivo:</b> Conocer las debilidades antes que el jurado. Es lo que separa una buena sustentación de una excelente.</p></header>
+  <section class="sub"><h4>La regla de oro</h4><p>Anticiparse siempre gana. Decir «esta es una limitación que identificamos» proyecta dominio. Que te la señalen a ti proyecta descuido. El contenido es el mismo; el efecto es opuesto.</p><p>Estructura de respuesta recomendada: <b>respuesta corta en una frase → evidencia concreta → hasta dónde llega la conclusión</b>.</p></section><section class="sub"><h4>Límites que el proyecto ya declara</h4><p>El registro aduanero no describe la operación portuaria.</p><p>El horizonte es de un solo mes; no sirve para proyectar un año.</p><p>Los intervalos son aproximados.</p><p>Las variables externas aportan asociación, no causalidad.</p><p>El EDA quedó congelado en el corte 2012-2024 mientras el modelo llega a 2026-05.</p></section><section class="sub"><h4>Límites que NO están declarados y conviene conocer</h4><p><b>La selección del modelo comparte ventana con la evaluación,</b> lo que sesga el WAPE reportado ligeramente hacia abajo.</p><p><b>Los modelos subestiman:</b> 19 de 24 meses por debajo del real, sesgo medio de −4,61 %.</p><p><b>El EDA exige 8 GB de RAM</b> y no está documentado en ningún README.</p><p><b>El pipeline depende de fuentes con rezago de publicación:</b> si NOAA se retrasa con el ONI, el pronóstico se detiene con un error.</p><p><b>El EDA propone variables que el modelo no implementa:</b> participaciones por país y por capítulo, codificación one-hot e interacciones como el precio implícito. Ninguna llegó al modelo final.</p><div class="box warn"><b>Cuidado en la sustentación</b><p>El último punto es el más delicado. Si un jurado lee el EDA y después la lista de variables, va a notar que se prometieron cosas que no están. La respuesta honesta: «lo propusimos en el EDA, priorizamos las variables temporales por el tamaño de la muestra —173 meses— y dejamos las categóricas como trabajo futuro».</p></div></section><section class="sub"><h4>La cifra doble</h4><p>El informe del EDA dice 5.625.947 registros. La guía de estudio dice 6.703.355. Ambas son correctas: la primera es el corte 2012-2024, la segunda el 2012-2026.</p><p>Dilo tú primero. Si te lo señalan a ti, parece un error; si lo aclaras tú, parece rigor.</p></section>
+  <div class="quiz"><h5>Compruebe que lo entendió</h5>
+    <p class="hint">Responda en voz alta antes de abrir. Si no le sale, vuelva a leer el módulo.</p><div class="q"><button class="qb" type="button">1. ¿Cuál es la mejor forma de responder cuando el jurado señala una debilidad?</button>
+      <div class="qa">Respuesta corta en una frase, después la evidencia concreta, y por último hasta dónde llega la conclusión. Y siempre que sea posible, adelantarse: mencionar la limitación antes de que la pregunten.</div></div><div class="q"><button class="qb" type="button">2. ¿Por qué aparecen dos conteos de registros distintos en la documentación?</button>
+      <div class="qa">Porque son cortes distintos: 5.625.947 corresponde al periodo 2012-2024 que usa el EDA congelado, y 6.703.355 al periodo 2012-2026 que usa el modelo. Ambos son correctos y conviene aclararlo antes de que lo pregunten.</div></div></div>
+</article>
+
+<h2 class="sec" id="cifras">Tarjetas de cifras</h2>
+<p>Estas son las cifras que deben salir sin pensar. Haga clic en cada tarjeta para ver el contexto y el matiz.</p>
+<div class="cards"><div class="card" tabindex="0">
+  <div class="cf">6.703.355</div><div class="cl">registros filtrados para la aduana 35</div><div class="cx">Es el consolidado 2012-2026. El EDA usa 5.625.947 porque está congelado en 2012-2024.</div></div><div class="card" tabindex="0">
+  <div class="cf">173</div><div class="cl">meses continuos, sin un solo hueco</div><div class="cx">De enero de 2012 a mayo de 2026. Verificado con asfreq y con una prueba automatizada.</div></div><div class="card" tabindex="0">
+  <div class="cf">18</div><div class="cl">paquetes públicos del DANE</div><div class="cx">8,1 GB en total, todos con huella SHA-256 registrada en el manifiesto.</div></div><div class="card" tabindex="0">
+  <div class="cf">7,34 %</div><div class="cl">WAPE de Ridge en valor CIF</div><div class="cx">Contra 16,49 % del naive estacional. Reduce el error a menos de la mitad.</div></div><div class="card" tabindex="0">
+  <div class="cf">9,51 %</div><div class="cl">WAPE de HistGradientBoosting en peso</div><div class="cx">Contra 13,66 % del naive. Aquí sí hay diferencia clara frente a Ridge (10,16 %).</div></div><div class="card" tabindex="0">
+  <div class="cf">USD 2.070,9 M</div><div class="cl">pronóstico de CIF para junio de 2026</div><div class="cx">Intervalo aproximado del 80 %: entre 1.877,0 y 2.264,7 millones.</div></div><div class="card" tabindex="0">
+  <div class="cf">1.173,6 M kg</div><div class="cl">pronóstico de peso neto para junio de 2026</div><div class="cx">Intervalo aproximado del 80 %: entre 1.004,6 y 1.342,7 millones.</div></div><div class="card" tabindex="0">
+  <div class="cf">24</div><div class="cl">predicciones de validación walk-forward</div><div class="cx">Por cada modelo y cada objetivo. En total 144 predicciones.</div></div><div class="card" tabindex="0">
+  <div class="cf">26</div><div class="cl">variables predictoras</div><div class="cx">Todas desplazadas al menos un mes. Ninguna contemporánea.</div></div><div class="card" tabindex="0">
+  <div class="cf">0,871</div><div class="cl">autocorrelación de rezago 1</div><div class="cx">Justifica usar el pasado reciente como predictor.</div></div><div class="card" tabindex="0">
+  <div class="cf">0,9971</div><div class="cl">correlación FOB contemporáneo con CIF</div><div class="cx">Por eso es fuga de información y solo se usan sus rezagos.</div></div><div class="card" tabindex="0">
+  <div class="cf">0,481</div><div class="cl">p-valor de la prueba ADF</div><div class="cx">Mayor que 0,05: la serie en nivel no es estacionaria.</div></div></div>
+
+<h2 class="sec" id="jurado">Las doce preguntas del jurado</h2>
+<p>Ordenadas de más probable a menos. Formule la respuesta en voz alta antes de abrirla.</p>
+<div class="q"><button class="qb" type="button">1. ¿Qué hicieron exactamente?</button>
+  <div class="qa">Tomamos los archivos públicos del DANE, filtramos los registros de la aduana 35 de Buenaventura, construimos una serie mensual continua de 173 meses y entrenamos un modelo que pronostica el mes siguiente en valor CIF y en peso neto.</div></div><div class="q"><button class="qb" type="button">2. ¿Por qué la aduana y no el puerto?</button>
+  <div class="qa">Porque es lo que miden los datos. La variable ADUANA identifica la oficina donde se presenta la declaración, no la operación física. Trabajamos con registro aduanero y el proyecto no concluye sobre tráfico portuario.</div></div><div class="q"><button class="qb" type="button">3. ¿Cómo evitaron la fuga de información?</button>
+  <div class="qa">Todas las variables observadas se desplazan al menos un mes antes de entrar al modelo. El FOB contemporáneo correlaciona 0,9971 con el CIF, así que usarlo sería trampa: se publica junto con el objetivo. Hay además una prueba automatizada que verifica que ninguna variable contemporánea entre.</div></div><div class="q"><button class="qb" type="button">4. ¿Por qué WAPE como métrica principal?</button>
+  <div class="qa">Porque pondera el error por volumen: divide el error absoluto total entre el total observado. En comercio exterior, fallar en un mes de gran movimiento importa más que en uno pequeño, y MAPE los trataría igual.</div></div><div class="q"><button class="qb" type="button">5. ¿Por qué 24 meses de validación?</button>
+  <div class="qa">Porque la prueba de Kolmogórov-Smirnov detectó un cambio de distribución con estadístico 0,853 y desplazamiento de la mediana de 45,8 %. La serie antigua se comporta distinto a la reciente, así que evaluar contra 2013 no diría nada útil sobre 2026.</div></div><div class="q"><button class="qb" type="button">6. ¿El modelo sirve para pronosticar un año?</button>
+  <div class="qa">No. Está construido y validado para un horizonte de un mes. Extenderlo exigiría reentrenar con esa estructura y volver a validar; los intervalos actuales no serían válidos.</div></div><div class="q"><button class="qb" type="button">7. ¿Por qué Ridge y no una red neuronal?</button>
+  <div class="qa">Por el tamaño de la muestra: 173 meses, de los cuales 161 son utilizables tras los rezagos. Con esa cantidad de datos, un modelo lineal regularizado es más estable y además interpretable. Comparamos contra HistGradientBoosting y contra un naive estacional.</div></div><div class="q"><button class="qb" type="button">8. Ridge y HGB dan casi lo mismo en CIF. ¿Cómo eligieron?</button>
+  <div class="qa">Es cierto: 7,3403 % contra 7,3470 %, una diferencia indistinguible del ruido. Elegimos Ridge por interpretabilidad. En peso neto sí hay diferencia clara y ahí ganó HGB con 9,51 % contra 10,16 %.</div></div><div class="q"><button class="qb" type="button">9. ¿No les preocupa la multicolinealidad?</button>
+  <div class="qa">La medimos: el VIF de las medias móviles supera 2.000. Es esperable porque la media de 3 meses contiene los rezagos 1, 2 y 3. Precisamente por eso usamos Ridge con alpha=10, que reparte el peso entre variables correlacionadas en lugar de asignárselo todo a una.</div></div><div class="q"><button class="qb" type="button">10. ¿El ONI causa cambios en las importaciones?</button>
+  <div class="qa">No afirmamos causalidad. El ONI aporta asociación predictiva porque las fases de El Niño y La Niña se relacionan con cosechas, costos logísticos y rutas marítimas. La conclusión llega hasta ahí.</div></div><div class="q"><button class="qb" type="button">11. ¿Qué pasa si el DANE publica un año nuevo?</button>
+  <div class="qa">El pipeline es incremental: procesa solo los archivos nuevos y los concatena con el consolidado existente. Habría que actualizar la lista de archivos y regenerar las capas trusted y surface.</div></div><div class="q"><button class="qb" type="button">12. ¿Qué tan confiable es el pronóstico?</button>
+  <div class="qa">En validación honesta de 24 meses el error ponderado fue de 7,34 % en CIF. El intervalo del 80 % es aproximado. Y detectamos un sesgo: 19 de 24 meses quedaron por debajo del real, con media de −4,61 %, porque el modelo va un paso atrás de una tendencia creciente.</div></div>
+
+<h2 class="sec" id="autoeval">Autoevaluación final · 30 preguntas</h2>
+<p>Si falla una, el enlace lo lleva de vuelta al módulo correspondiente. El contador de arriba lleva el progreso.</p>
+<div class="q ae" data-m="m1"><button class="qb" type="button">1. ¿Cuántos registros tiene el consolidado y cuántos usa el EDA?</button>
+  <div class="qa">6.703.355 el consolidado 2012-2026; 5.625.947 el EDA congelado en 2012-2024. <a class="goto" href="#m1">ir al módulo</a></div></div><div class="q ae" data-m="m1"><button class="qb" type="button">2. ¿Qué código de aduana identifica a Buenaventura?</button>
+  <div class="qa">El 35. Todo el proyecto se apoya en el filtro ADUA == 35. <a class="goto" href="#m1">ir al módulo</a></div></div><div class="q ae" data-m="m1"><button class="qb" type="button">3. ¿Por qué predecir CIF y peso por separado?</button>
+  <div class="qa">Porque su correlación es apenas 0,52: el valor puede subir por más volumen o por mercancía más cara. <a class="goto" href="#m1">ir al módulo</a></div></div><div class="q ae" data-m="m2"><button class="qb" type="button">4. Nombre las tres fuentes de datos.</button>
+  <div class="qa">DANE (microdatos de importaciones), Banco de la República vía Datos Abiertos (TRM) y NOAA (índice ONI). <a class="goto" href="#m2">ir al módulo</a></div></div><div class="q ae" data-m="m2"><button class="qb" type="button">5. ¿Qué garantiza el SHA-256 del manifiesto?</button>
+  <div class="qa">Que los archivos son idénticos a los publicados por el DANE; un solo byte alterado cambiaría la huella. <a class="goto" href="#m2">ir al módulo</a></div></div><div class="q ae" data-m="m3"><button class="qb" type="button">6. Nombre las cuatro capas de datos.</button>
+  <div class="qa">raw (originales intactos), landing (filtrado a la aduana 35), trusted (validado y agregado) y surface (publicado). <a class="goto" href="#m3">ir al módulo</a></div></div><div class="q ae" data-m="m3"><button class="qb" type="button">7. ¿Por qué se lee por bloques de 150.000 filas?</button>
+  <div class="qa">Porque los archivos pesan gigabytes y no caben en memoria; así el consumo es constante sin importar el tamaño. <a class="goto" href="#m3">ir al módulo</a></div></div><div class="q ae" data-m="m4"><button class="qb" type="button">8. ¿Cuánto vale la autocorrelación de rezago 1 y qué implica?</button>
+  <div class="qa">0,871. La serie tiene memoria fuerte, lo que justifica usar rezagos como predictores. <a class="goto" href="#m4">ir al módulo</a></div></div><div class="q ae" data-m="m4"><button class="qb" type="button">9. ¿Qué dice la prueba ADF sobre la serie?</button>
+  <div class="qa">p = 0,481, mayor que 0,05: la serie en nivel no es estacionaria. Con logaritmo y diferencia el p-valor cae a 0,000. <a class="goto" href="#m4">ir al módulo</a></div></div><div class="q ae" data-m="m4"><button class="qb" type="button">10. ¿Cuál es el mes de mayor y el de menor movimiento?</button>
+  <div class="qa">Agosto está 7,1 % sobre el promedio; febrero 5,2 % por debajo y junio 5,3 %. <a class="goto" href="#m4">ir al módulo</a></div></div><div class="q ae" data-m="m4"><button class="qb" type="button">11. ¿Por qué el mes se codifica con seno y coseno?</button>
+  <div class="qa">Porque el calendario es cíclico: como número, diciembre y enero quedarían lo más lejos posible siendo consecutivos. <a class="goto" href="#m4">ir al módulo</a></div></div><div class="q ae" data-m="m4"><button class="qb" type="button">12. ¿Cuánto correlaciona el FOB contemporáneo con el CIF y qué se hizo?</button>
+  <div class="qa">0,9971. Se excluyó por fuga de información; solo se usan sus rezagos. <a class="goto" href="#m4">ir al módulo</a></div></div><div class="q ae" data-m="m4"><button class="qb" type="button">13. ¿Qué detectó la prueba KS y qué decisión produjo?</button>
+  <div class="qa">Cambio de distribución: estadístico 0,853, p = 0,000, mediana desplazada 45,8 %. Por eso se valida solo con los últimos 24 meses. <a class="goto" href="#m4">ir al módulo</a></div></div><div class="q ae" data-m="m5"><button class="qb" type="button">14. ¿Qué imprime el notebook 02 y por qué importa?</button>
+  <div class="qa">«Control de fuga temporal aprobado: 26 predictoras». Verifica con un assert que ninguna variable contemporánea entró. <a class="goto" href="#m5">ir al módulo</a></div></div><div class="q ae" data-m="m5"><button class="qb" type="button">15. ¿Cuánta RAM necesita el EDA y por qué?</button>
+  <div class="qa">Cerca de 8 GB. Carga los 5,6 millones de registros de una vez (2.249 MB en pandas) más las copias de la normalización. <a class="goto" href="#m5">ir al módulo</a></div></div><div class="q ae" data-m="m5"><button class="qb" type="button">16. Diferencia entre MAE, RMSE, MAPE y WAPE.</button>
+  <div class="qa">MAE: error medio en unidades. RMSE: castiga más los errores grandes. MAPE: promedia el error relativo por igual. WAPE: pondera por volumen; es el principal. <a class="goto" href="#m5">ir al módulo</a></div></div><div class="q ae" data-m="m6"><button class="qb" type="button">17. ¿Qué es un rezago?</button>
+  <div class="qa">El valor de una variable en un momento anterior. cif_usd_lag_1 en la fila de mayo contiene el CIF de abril. <a class="goto" href="#m6">ir al módulo</a></div></div><div class="q ae" data-m="m6"><button class="qb" type="button">18. ¿Cuántas predictoras hay y de qué tipos?</button>
+  <div class="qa">26: diez rezagos de objetivos, cuatro medias móviles, seis rezagos internos, tres de calendario y tendencia, y tres externas. <a class="goto" href="#m6">ir al módulo</a></div></div><div class="q ae" data-m="m6"><button class="qb" type="button">19. ¿Por qué shift antes de rolling?</button>
+  <div class="qa">Porque rolling sin desplazar incluiría el mes que se quiere predecir dentro del promedio, produciendo fuga. <a class="goto" href="#m6">ir al módulo</a></div></div><div class="q ae" data-m="m6"><button class="qb" type="button">20. ¿Cuál es la variable de mayor correlación con el objetivo?</button>
+  <div class="qa">La media móvil de 3 meses, con 0,850, por encima del rezago 1 que da 0,828. <a class="goto" href="#m6">ir al módulo</a></div></div><div class="q ae" data-m="m6"><button class="qb" type="button">21. ¿Qué valor de VIF alcanzan las medias móviles y qué implica?</button>
+  <div class="qa">Más de 2.000. Multicolinealidad alta, que es exactamente el escenario para el que sirve Ridge. <a class="goto" href="#m6">ir al módulo</a></div></div><div class="q ae" data-m="m7"><button class="qb" type="button">22. ¿Por qué no se usa train_test_split?</button>
+  <div class="qa">Porque reparte al azar y metería meses futuros en el entrenamiento. La partición en series de tiempo debe ser cronológica. <a class="goto" href="#m7">ir al módulo</a></div></div><div class="q ae" data-m="m7"><button class="qb" type="button">23. Explique walk-forward en una frase.</button>
+  <div class="qa">Entrenar con todo lo anterior a un mes, predecir ese mes, avanzar uno y repetir 24 veces. <a class="goto" href="#m7">ir al módulo</a></div></div><div class="q ae" data-m="m7"><button class="qb" type="button">24. ¿Cuántos entrenamientos ocurren en la validación?</button>
+  <div class="qa">24 por modelo y objetivo: el modelo se reentrena desde cero en cada paso. En total 144 predicciones. <a class="goto" href="#m7">ir al módulo</a></div></div><div class="q ae" data-m="m7"><button class="qb" type="button">25. ¿Qué WAPE da el naive y para qué sirve?</button>
+  <div class="qa">16,49 % en CIF y 13,66 % en peso. Es el piso de comparación que hace interpretable el resultado de los modelos. <a class="goto" href="#m7">ir al módulo</a></div></div><div class="q ae" data-m="m7"><button class="qb" type="button">26. ¿Qué sesgo tienen los modelos y por qué?</button>
+  <div class="qa">Subestiman: 19 de 24 meses por debajo del real, media −4,61 %. La serie crece y un modelo de rezagos va un paso atrás de la tendencia. <a class="goto" href="#m7">ir al módulo</a></div></div><div class="q ae" data-m="m8"><button class="qb" type="button">27. ¿Cuál es el pronóstico de junio de 2026?</button>
+  <div class="qa">USD 2.070,9 millones de CIF y 1.173,6 millones de kg de peso neto. <a class="goto" href="#m8">ir al módulo</a></div></div><div class="q ae" data-m="m8"><button class="qb" type="button">28. ¿Cómo se construye el intervalo del 80 %?</button>
+  <div class="qa">RMSE del backtest multiplicado por 1,2816, sumado y restado a la predicción. Es aproximado y simétrico. <a class="goto" href="#m8">ir al módulo</a></div></div><div class="q ae" data-m="m9"><button class="qb" type="button">29. Mencione tres límites del proyecto.</button>
+  <div class="qa">Registro aduanero no es operación portuaria; horizonte de un solo mes; las externas aportan asociación, no causalidad. <a class="goto" href="#m9">ir al módulo</a></div></div><div class="q ae" data-m="m9"><button class="qb" type="button">30. ¿Qué prometió el EDA que el modelo no implementó?</button>
+  <div class="qa">Participaciones por país y capítulo, codificación one-hot e interacciones como el precio implícito. Se priorizaron las variables temporales por el tamaño de la muestra. <a class="goto" href="#m9">ir al módulo</a></div></div>
+
+</main>
+</div>
+
+<footer>
+  Curso construido sobre el estado verificado del proyecto. Todas las cifras fueron comprobadas ejecutando el pipeline.
+  Documentos relacionados: <code>TUTORIAL_EJECUCION.md</code> · <code>reportes/REPORTE_EXPERTO.html</code> · <code>reportes/EDA_Visor_52_Preguntas.html</code>
+</footer>
+
+<script>
+(function(){
+  // desplegables
+  document.querySelectorAll('.qb').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const q=b.parentElement; q.classList.toggle('open');
+      if(q.classList.contains('ae')) prog();
+    });
+  });
+  // tarjetas
+  document.querySelectorAll('.card').forEach(c=>{
+    const t=()=>c.classList.toggle('on');
+    c.addEventListener('click',t);
+    c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t();}});
+  });
+  // progreso de autoevaluación
+  const aes=[...document.querySelectorAll('.q.ae')], pf=document.getElementById('pf'), pt=document.getElementById('pt');
+  function prog(){
+    const n=aes.filter(q=>q.classList.contains('open')).length;
+    pf.style.width=(n/aes.length*100)+'%';
+    pt.textContent=n+' de '+aes.length+' repasadas';
+  }
+  // buscador
+  const s=document.getElementById('s');
+  const units=[...document.querySelectorAll('article.mod, .card, #jurado ~ .q, .q.ae')];
+  units.forEach(u=>u.dataset.t=(u.textContent||'').toLowerCase());
+  s.addEventListener('input',()=>{
+    const v=s.value.trim().toLowerCase();
+    units.forEach(u=>u.classList.toggle('hide', !!v && !u.dataset.t.includes(v)));
+  });
+})();
+</script>
+</html>

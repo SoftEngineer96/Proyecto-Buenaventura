@@ -1,0 +1,32 @@
+{
+  "rows": 5625947,
+  "columns": [
+    "FECH",
+    "ADUA",
+    "PAISGEN",
+    "PAISPRO",
+    "PAISCOM",
+    "DEPTODES",
+    "VIATRANS",
+    "REGIMEN",
+    "PBK",
+    "PNK",
+    "CANU",
+    "NABAN",
+    "VAFODO",
+    "FLETE",
+    "VACID",
+    "VACIP",
+    "VADUA",
+    "BASEIVA",
+    "TOTALIVAYO",
+    "SEGUROS",
+    "TIPOIM",
+    "PORARA",
+    "DEREL",
+    "SOURCE_ARCHIVE",
+    "SOURCE_FILE",
+    "SOURCE_MONTH"
+  ],
+  "source_files": 156
+}

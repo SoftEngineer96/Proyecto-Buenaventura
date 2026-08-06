@@ -1,0 +1,35 @@
+data/raw/*
+!data/raw/MANIFIESTO_DATOS.json
+data/landing/*.csv.gz
+data/landing/*.pkl.gz
+data/trusted/*.pkl.gz
+*.zip
+__pycache__/
+.ipynb_checkpoints/
+.runtime/
+data/external/raw/
+reportes/validacion_visual/
+*.pyc
+
+# Entorno virtual (el README instruye crear .venv aqui)
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Editores e IDE
+.vscode/
+.idea/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Python
+*.egg-info/
+.pytest_cache/
+node_modules/
+
+# Se conservan modelos/*.joblib y data/trusted/*.csv.gz
+# porque son pequenos y hacen el repo reproducible sin reentrenar

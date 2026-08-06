@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reporte experto · Proyecto Buenaventura</title>
+<style>
+:root{
+  --bg:#0f1216; --card:#171b21; --card2:#12161b; --b:#242a33; --b2:#2f3742;
+  --tx:#e6e9ee; --mu:#94a0ad; --dim:#6c7783;
+  --ac:#5aa9ff; --ok:#3ecf8e; --wa:#f0b429; --cr:#ff6b6b; --pu:#b78af0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);
+     font:15px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--ac)}
+code{font:12.5px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;
+     background:#0b0e12;border:1px solid var(--b);border-radius:4px;padding:1px 5px;color:#9fd0a8}
+pre{background:#0b0e12;border:1px solid var(--b);border-radius:8px;padding:12px 14px;overflow:auto;margin:12px 0}
+pre code{background:none;border:0;padding:0;white-space:pre;display:block}
+
+header.top{position:sticky;top:0;z-index:20;background:#0f1216f2;backdrop-filter:blur(10px);
+           border-bottom:1px solid var(--b);padding:13px 26px}
+header.top h1{margin:0;font-size:18px;letter-spacing:-.01em}
+header.top .sub{color:var(--mu);font-size:12.5px;margin-top:2px}
+#s{width:100%;max-width:400px;margin-top:9px;padding:8px 12px;border-radius:8px;
+   border:1px solid var(--b);background:#11151a;color:var(--tx);font-size:13.5px}
+#cnt{color:var(--dim);font-size:12px;margin-top:6px;min-height:16px}
+
+.wrap{display:grid;grid-template-columns:236px 1fr;gap:34px;max-width:1200px;margin:0 auto;padding:24px 26px 90px}
+nav{position:sticky;top:132px;align-self:start;font-size:13px;max-height:calc(100vh - 160px);overflow:auto}
+nav a{display:block;padding:6px 11px;color:var(--mu);text-decoration:none;
+      border-left:2px solid var(--b);border-radius:0 6px 6px 0}
+nav a:hover{color:var(--ac);border-left-color:var(--ac);background:#1a1f26}
+nav a.ind{padding-left:22px;font-size:12.5px;color:var(--dim)}
+nav .lbl{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);
+         margin:16px 0 5px;padding-left:11px}
+
+h2.sec{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--ac);
+       margin:44px 0 6px;padding-bottom:9px;border-bottom:1px solid var(--b)}
+h2.sec:first-child{margin-top:0}
+h3{font-size:16.5px;margin:26px 0 8px;font-weight:600}
+h4{font-size:14px;margin:18px 0 6px;font-weight:600;color:var(--mu)}
+p{margin:9px 0}
+
+.lead{font-size:16px;color:#cfd6de;border-left:3px solid var(--ac);padding-left:16px;margin:16px 0}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:11px;margin:16px 0}
+.kpi{background:var(--card);border:1px solid var(--b);border-radius:10px;padding:13px 15px}
+.kpi .v{font-size:21px;font-weight:650;letter-spacing:-.02em;line-height:1.2}
+.kpi .k{font-size:11.5px;color:var(--mu);margin-top:3px}
+.kpi.g .v{color:var(--ok)} .kpi.w .v{color:var(--wa)} .kpi.c .v{color:var(--cr)} .kpi.a .v{color:var(--ac)}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--b);vertical-align:top}
+th{color:var(--mu);font-size:11px;letter-spacing:.07em;text-transform:uppercase;font-weight:600;
+   border-bottom:1px solid var(--b2)}
+tbody tr:hover{background:#1a1f2680}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tw{overflow-x:auto}
+
+.f{background:var(--card);border:1px solid var(--b);border-left-width:3px;border-radius:9px;
+   padding:14px 17px;margin:13px 0}
+.f.cr{border-left-color:var(--cr)} .f.al{border-left-color:var(--wa)}
+.f.me{border-left-color:var(--ac)} .f.ba{border-left-color:var(--dim)}
+.f.ok{border-left-color:var(--ok)}
+.f h4{margin:0 0 6px;color:var(--tx);font-size:14.5px;display:flex;gap:9px;align-items:baseline}
+.f h4 .id{flex:none;font:11px ui-monospace,monospace;color:var(--dim);letter-spacing:.04em}
+.f p:last-child{margin-bottom:0}
+.f .fix{margin-top:9px;padding-top:9px;border-top:1px dashed var(--b2);font-size:13.5px;color:var(--mu)}
+.f .fix b{color:var(--ok);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:2px}
+
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+     padding:2px 7px;border-radius:20px;font-weight:600;vertical-align:middle}
+.t-cr{background:#3a1c1e;color:#ff8f8f} .t-al{background:#3a2f14;color:#f5c95a}
+.t-me{background:#16293d;color:#7cc0ff} .t-ba{background:#22272e;color:var(--mu)}
+.t-ok{background:#12301f;color:#5fe0a4} .t-v{background:#2a1f3d;color:#c6a6f5}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+
+.flow{background:var(--card2);border:1px solid var(--b);border-radius:10px;padding:16px 18px;margin:14px 0;
+      font:12.5px/1.85 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-x:auto;white-space:pre;color:var(--mu)}
+.flow b{color:var(--ac);font-weight:600} .flow i{color:var(--ok);font-style:normal}
+.flow u{color:var(--wa);text-decoration:none}
+
+ul,ol{margin:9px 0;padding-left:22px} li{margin:4px 0}
+.hide{display:none}
+footer{max-width:1200px;margin:0 auto;padding:26px;border-top:1px solid var(--b);
+       color:var(--dim);font-size:12.5px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(max-width:820px){.wrap{grid-template-columns:1fr}nav{position:static;max-height:none}}
+</style>
+
+<header class="top">
+  <h1>Reporte experto · Proyecto de importaciones Aduana de Buenaventura</h1>
+  <div class="sub">Revisión de arquitectura, código, datos, documentación y ejecución reproducida · 5 de agosto de 2026</div>
+  <input id="s" placeholder="Buscar hallazgo, archivo, carpeta…" aria-label="Buscar en el reporte">
+  <div id="cnt"></div>
+</header>
+
+<div class="wrap">
+<nav>
+  <div class="lbl">Valoración</div>
+  <a href="#resumen">Resumen ejecutivo</a>
+  <a href="#veredicto">Veredicto por dimensión</a>
+  <a href="#metodo">Rigor metodológico</a>
+  <a href="#limites">Limitaciones honestas</a>
+  <div class="lbl">Anatomía</div>
+  <a href="#carpetas">Carpeta por carpeta</a>
+  <a href="#flujo">Flujo de datos</a>
+  <a href="#modulos">Los 12 módulos</a>
+  <a href="#artefactos">Artefactos y huérfanos</a>
+  <div class="lbl">Auditoría</div>
+  <a href="#evidencia">Evidencia de ejecución</a>
+  <a href="#criticos">Hallazgos críticos</a>
+  <a href="#altos">Hallazgos altos</a>
+  <a href="#medios">Hallazgos medios</a>
+  <a href="#bajos">Hallazgos bajos</a>
+  <div class="lbl">Cierre</div>
+  <a href="#plan">Plan de remediación</a>
+  <a href="#metodologia">Cómo se hizo</a>
+</nav>
+
+<main>
+<h2 class="sr-only">Reporte de auditoría técnica del proyecto</h2>
+
+<!-- ══════════════════ RESUMEN ══════════════════ -->
+<h2 class="sec" id="resumen">Resumen ejecutivo</h2>
+
+<p class="lead">Es un proyecto de datos sólido y honesto, construido con criterio de ingeniería poco común en trabajo académico. Reproduce sus propios resultados con exactitud de trece cifras significativas. Su debilidad no está en el análisis sino en la robustez operativa: hay un fallo programado para el próximo mes y la comparación entre los dos modelos finalistas no soporta la conclusión que el proyecto extrae de ella.</p>
+
+<div class="grid">
+  <div class="kpi g"><div class="v">7/7</div><div class="k">Pruebas que pasan</div></div>
+  <div class="kpi g"><div class="v">13 cifras</div><div class="k">Exactitud al reproducir</div></div>
+  <div class="kpi a"><div class="v">6,7 M</div><div class="k">Registros consolidados</div></div>
+  <div class="kpi a"><div class="v">173</div><div class="k">Meses sin huecos</div></div>
+  <div class="kpi g"><div class="v">0</div><div class="k">Meses solapados entre ZIP</div></div>
+  <div class="kpi c"><div class="v">4</div><div class="k">Hallazgos críticos</div></div>
+  <div class="kpi w"><div class="v">9</div><div class="k">Hallazgos altos</div></div>
+  <div class="kpi"><div class="v">1.398</div><div class="k">Líneas de Python</div></div>
+</div>
+
+<h3>Las tres cosas que importan</h3>
+
+<div class="f ok">
+  <h4><span class="tag t-ok">Fortaleza</span> La reproducibilidad está demostrada, no afirmada</h4>
+  <p>Ejecuté el pipeline en un entorno limpio con dependencias instaladas desde cero. <code>modeling.py</code> devolvió WAPE 7,340330600807987 contra 7,340330600807972 guardado — la diferencia es ruido de punto flotante por distinta versión de BLAS. El pronóstico salió idéntico hasta el último decimal. Reconstruí además los agregados del EDA leyendo por bloques y las cinco estadísticas de la variable objetivo coinciden al centavo con <code>eda_results.json</code>. Muy pocos proyectos de este tipo superan esta prueba.</p>
+</div>
+
+<div class="f cr">
+  <h4><span class="tag t-cr">Crítico</span> Hay un fallo con fecha de vencimiento</h4>
+  <p>El índice ONI de NOAA se publica con rezago y <code>variables_externas_mensuales.csv</code> ya tiene <code>oni_anomalia</code> vacío desde junio de 2026. Para pronosticar julio hace falta el ONI de junio; si no está publicado, <code>modeling.py</code> lanza <code>ValueError</code> y no produce nada. Como además borra los <code>.joblib</code> antes de entrenar, un fallo deja el proyecto sin modelos y sin capacidad de inferencia.</p>
+</div>
+
+<div class="f cr">
+  <h4><span class="tag t-cr">Crítico</span> La conclusión sobre el modelo ganador no se sostiene</h4>
+  <p>Ridge obtiene WAPE 7,3403 % y HistGradientBoosting 7,3470 % sobre las mismas 24 observaciones. Esa diferencia de 0,007 puntos porcentuales es indistinguible del ruido. Además la selección se hace sobre la misma ventana con la que se reporta el desempeño, lo que sesga el WAPE hacia abajo. El proyecto presenta "Ridge fue seleccionado porque obtuvo mejor WAPE" como un hallazgo; es una moneda al aire.</p>
+</div>
+
+<!-- ══════════════════ VEREDICTO ══════════════════ -->
+<h2 class="sec" id="veredicto">Veredicto por dimensión</h2>
+
+<div class="tw"><table>
+<thead><tr><th>Dimensión</th><th style="width:92px">Nivel</th><th>Sustento</th></tr></thead>
+<tbody>
+<tr><td><b>Arquitectura de datos</b></td><td><span class="tag t-ok">Excelente</span></td>
+ <td>Capas <code>raw → landing → trusted → surface</code> bien separadas y respetadas sin excepción. Cada capa tiene un dueño claro y nadie escribe fuera de su nivel.</td></tr>
+<tr><td><b>Integridad de datos</b></td><td><span class="tag t-ok">Excelente</span></td>
+ <td>6.703.355 filas, todas con ADUA=35, cero filas malformadas, 173 meses continuos y cero solapamiento entre los 18 archivos fuente. Verificado fila por fila.</td></tr>
+<tr><td><b>Trazabilidad de origen</b></td><td><span class="tag t-ok">Excelente</span></td>
+ <td>Manifiesto con SHA-256 de 20 archivos, auditoría por archivo y mes en <code>audit_sources_2012_2026.csv</code>, URLs de catálogo DANE y DIAN registradas.</td></tr>
+<tr><td><b>Prevención de fuga temporal</b></td><td><span class="tag t-ok">Muy bueno</span></td>
+ <td>Todas las variables observadas se desplazan al pasado. Verifiqué la alineación real: cero discrepancias entre <code>cif_usd_lag_1</code> y el valor del mes anterior en los 173 meses. Existe una prueba dedicada que lo protege.</td></tr>
+<tr><td><b>Diseño de validación</b></td><td><span class="tag t-me">Bueno con reserva</span></td>
+ <td>Ventana expansiva de un paso, comparador naive estacional, WAPE como métrica principal. Todo correcto. La reserva es que selección y reporte comparten ventana.</td></tr>
+<tr><td><b>Documentación narrativa</b></td><td><span class="tag t-ok">Muy buena</span></td>
+ <td>Tutorial de 253 párrafos con guion de sustentación, informe EDA de 52 preguntas donde cada una trae código, hallazgo <i>e implicación para el modelo</i>. Ese tercer campo es lo que separa un EDA útil de uno decorativo.</td></tr>
+<tr><td><b>Documentación del código</b></td><td><span class="tag t-cr">Ausente</span></td>
+ <td>Cero docstrings en 32 funciones repartidas en 12 módulos. Un comentario en 1.398 líneas. Ningún diccionario de las 23 columnas DANE.</td></tr>
+<tr><td><b>Robustez operativa</b></td><td><span class="tag t-cr">Frágil</span></td>
+ <td>Sin degradación ante fuentes externas ausentes, sin rollback al reentrenar, fechas de corte incrustadas en el código en cuatro lugares.</td></tr>
+<tr><td><b>Gestión de dependencias</b></td><td><span class="tag t-al">Deficiente</span></td>
+ <td>Pillow se usa pero no se declara. <code>scikit-learn&gt;=1.5</code> permite instalar una versión incompatible con los modelos versionados; lo confirmé con cinco advertencias reales.</td></tr>
+<tr><td><b>Control de versiones</b></td><td><span class="tag t-cr">Inexistente</span></td>
+ <td>No hay repositorio git inicializado. 8,3 GB de datos crudos sin estrategia de almacenamiento externo.</td></tr>
+</tbody></table></div>
+
+<!-- ══════════════════ METODO ══════════════════ -->
+<h2 class="sec" id="metodo">Rigor metodológico</h2>
+
+<p>Esta sección es la relevante para sustentar. Son las decisiones que un jurado va a examinar y que están bien tomadas.</p>
+
+<h4>Lo que se hizo bien y hay que saber defender</h4>
+<ul>
+<li><b>La unidad de análisis es correcta.</b> El proyecto reconoce explícitamente (pregunta 4 del EDA) que una fila es una línea de importación, no un mes, y que el modelo debe operar sobre una tabla mensual agregada. Confundir esto es el error más común en trabajos con microdatos.</li>
+<li><b>La partición es cronológica, nunca aleatoria.</b> La validación avanza un mes por vez y el entrenamiento solo usa <code>index &lt; fecha</code>. No hay <code>train_test_split</code> en ninguna parte del proyecto.</li>
+<li><b>Existe un comparador honesto.</b> El naive estacional de 12 meses da WAPE 16,49 % en CIF y 13,66 % en peso. Los modelos ganan por un margen amplio y verificable. Sin ese piso, cualquier métrica sería incomparable.</li>
+<li><b>WAPE como métrica principal está bien justificado.</b> Pondera el error por el volumen real, que es lo correcto en una serie con la escala y la dispersión de esta.</li>
+<li><b>La transformación logarítmica está bien aplicada.</b> <code>TransformedTargetRegressor</code> con <code>log1p</code>/<code>expm1</code> maneja la asimetría de la variable sin contaminar la métrica, porque el inverso se aplica antes de medir.</li>
+<li><b>Las variables externas están desplazadas.</b> TRM y ONI entran con rezago de un mes. Usar la TRM del mes que se pronostica sería fuga, y el proyecto lo evita y lo documenta.</li>
+<li><b>Hay una prueba automatizada contra la fuga.</b> <code>test_model_table_has_no_contemporaneous_leakage</code> verifica que ninguna variable contemporánea entre en la tabla de modelado. Es la prueba más valiosa del conjunto.</li>
+</ul>
+
+<h4>Lo que un jurado exigente va a cuestionar</h4>
+<ol>
+<li><b>«¿Por qué Ridge y no HistGradientBoosting?»</b> — La respuesta honesta es que la diferencia no es significativa y que la elección se hizo sobre la misma ventana de evaluación. Prepara esa respuesta; no defiendas los 0,007 puntos.</li>
+<li><b>«¿Los intervalos del 80 % son válidos?»</b> — Son una aproximación normal simétrica construida con el RMSE del backtest, aplicada sobre un modelo entrenado en escala logarítmica. Deberían ser asimétricos. Está declarado como «aproximado», lo cual es honesto, pero conviene decirlo antes de que lo pregunten.</li>
+<li><b>«¿Cuántos registros tiene el proyecto?»</b> — Hay dos respuestas correctas conviviendo: 5.625.947 en el EDA (corte 2012-2024) y 6.703.355 en el modelo (corte 2012-2026). Dilo tú primero.</li>
+<li><b>«¿El ONI aporta causalidad?»</b> — No, y el proyecto lo dice: «asociación predictiva, no evidencia causal». Buena redacción, mantenla.</li>
+</ol>
+
+<!-- ══════════════════ LIMITES ══════════════════ -->
+<h2 class="sec" id="limites">Limitaciones honestas</h2>
+
+<p>El proyecto ya declara varias limitaciones en <code>GUIA_ESTUDIO.md</code>. Estas son las que faltan declarar:</p>
+
+<div class="tw"><table>
+<thead><tr><th>Limitación</th><th>¿Está declarada?</th><th>Consecuencia real</th></tr></thead>
+<tbody>
+<tr><td>Horizonte de un solo mes</td><td><span class="tag t-ok">Sí</span></td><td>Ninguna, es una decisión de diseño consciente</td></tr>
+<tr><td>Intervalos aproximados</td><td><span class="tag t-ok">Sí</span></td><td>Menor, pero la asimetría log no se menciona</td></tr>
+<tr><td>Externas sin causalidad</td><td><span class="tag t-ok">Sí</span></td><td>Ninguna, redacción correcta</td></tr>
+<tr><td>EDA congelado en 2012-2024</td><td><span class="tag t-ok">Sí</span></td><td>Las cifras del informe no reconcilian con la serie vigente</td></tr>
+<tr><td>Selección y evaluación comparten ventana</td><td><span class="tag t-cr">No</span></td><td>El WAPE reportado del ganador está sesgado a la baja</td></tr>
+<tr><td>Diferencia entre modelos no significativa</td><td><span class="tag t-cr">No</span></td><td>Se presenta una elección arbitraria como un hallazgo</td></tr>
+<tr><td>El EDA exige 8 GB de RAM</td><td><span class="tag t-cr">No</span></td><td>Un tercero no puede reproducirlo sin saberlo; el proceso muere sin mensaje útil</td></tr>
+<tr><td>El pipeline depende de fuentes con rezago de publicación</td><td><span class="tag t-cr">No</span></td><td>El pronóstico se detiene cuando NOAA se retrasa</td></tr>
+<tr><td>Los modelos están atados a scikit-learn 1.9.0</td><td><span class="tag t-cr">No</span></td><td>Cargarlos con otra versión emite advertencias de incompatibilidad</td></tr>
+</tbody></table></div>
+
+<!-- ══════════════════ CARPETAS ══════════════════ -->
+<h2 class="sec" id="carpetas">Anatomía carpeta por carpeta</h2>
+
+<p>Medidas reales sobre el árbol del proyecto. Peso total en disco: <b>8,7 GB</b>. Peso de lo que realmente se versionaría con el <code>.gitignore</code> actual: <b>3,4 MB en 57 archivos</b>, que es una proporción sana.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:200px">Carpeta</th><th class="num">Peso</th><th class="num">Arch.</th><th>Función y diagnóstico</th></tr></thead>
+<tbody>
+<tr><td><code>data/raw/dane</code></td><td class="num">8,1 GB</td><td class="num">18</td>
+ <td>Los 18 paquetes anuales del DANE, intactos. Nunca se modifican, solo se leen. <span class="tag t-ok">Correcto</span> — es exactamente el rol de una capa <i>raw</i>. Ignorados por git salvo el manifiesto.</td></tr>
+<tr><td><code>data/raw/dian</code></td><td class="num">129 MB</td><td class="num">2</td>
+ <td>Consultor de importaciones DIAN. <span class="tag t-al">Sin consumidor</span> — ningún módulo lee estos archivos. Solo aparecen en el manifiesto. O se usan para contrastar cifras y se documenta, o sobran.</td></tr>
+<tr><td><code>data/landing</code></td><td class="num">478 MB</td><td class="num">2</td>
+ <td>Consolidado de ADUA=35. Contiene <b>dos</b> archivos: el corte 2012-2024 (229 MB) y el 2012-2026 (272 MB). El primero es subconjunto del segundo pero es una dependencia real: <code>eda_compute.py</code> lo necesita para mantener congelado el informe. <span class="tag t-me">Justificado pero no explicado</span> en ningún README.</td></tr>
+<tr><td><code>data/trusted</code></td><td class="num">1,0 MB</td><td class="num">13</td>
+ <td>Series validadas, agregados por país y capítulo, auditorías y la tabla de modelado. Es la carpeta más desordenada del proyecto: conviven artefactos de dos generaciones con esquemas incompatibles. Ver <a href="#artefactos">artefactos</a>.</td></tr>
+<tr><td><code>data/trusted/eda_historico_2012_2024</code></td><td class="num">444 KB</td><td class="num">4</td>
+ <td>Congelado del EDA. <span class="tag t-ok">Buena decisión</span>: aísla el corte histórico para que el informe Word siga siendo reproducible aunque la serie avance.</td></tr>
+<tr><td><code>data/surface</code></td><td class="num">32 KB</td><td class="num">4</td>
+ <td>Salidas pequeñas para consumo. <span class="tag t-me">Un duplicado</span>: <code>serie_mensual_buenaventura.csv</code> es byte-idéntico al de <code>trusted</code> (mismo MD5). Y <code>proximo_pronostico_inferencia.csv</code> duplica el contenido de <code>proximo_pronostico.csv</code> por una segunda ruta de código.</td></tr>
+<tr><td><code>data/external</code></td><td class="num">588 KB</td><td class="num">4</td>
+ <td>TRM de Datos Abiertos y ONI de NOAA, más la tabla mensual combinada. <span class="tag t-ok">Bien documentada</span> — es la única subcarpeta de datos con su propio README explicando el desplazamiento temporal.</td></tr>
+<tr><td><code>modelos</code></td><td class="num">240 KB</td><td class="num">2</td>
+ <td>Un <code>.joblib</code> vigente por objetivo, con metadatos de <code>trained_through</code> y <code>forecast_date</code> incluidos. <span class="tag t-ok">Buen diseño</span> del paquete. <span class="tag t-al">Riesgo</span>: son binarios versionados atados a scikit-learn 1.9.0 sin fijar esa versión.</td></tr>
+<tr><td><code>reportes</code></td><td class="num">3,7 MB</td><td class="num">17</td>
+ <td>Informe EDA en Word y PDF (21 páginas), tutorial de sustentación, métricas, figuras y validación visual. <span class="tag t-ok">El entregable más fuerte</span> del proyecto.</td></tr>
+<tr><td><code>reportes/figuras</code></td><td class="num">376 KB</td><td class="num">5</td>
+ <td>Las cinco figuras del EDA, regeneradas por <code>eda_compute.py</code> a 180 dpi. Referenciadas desde el notebook, el Word y el visor HTML. <span class="tag t-ok">Correcto</span>.</td></tr>
+<tr><td><code>reportes/validacion_visual</code></td><td class="num">1,7 MB</td><td class="num">7</td>
+ <td>Miniaturas del PDF para control de calidad visual. <span class="tag t-me">Desincronizado</span>: <code>render_pdf_qa.py</code> pide renderizar las páginas 23 y 24 de un PDF que tiene 21. Ignorado por git, así que el impacto es bajo.</td></tr>
+<tr><td><code>src</code></td><td class="num">292 KB</td><td class="num">17</td>
+ <td>5 notebooks y 12 módulos Python. <span class="tag t-al">No es un paquete</span>: sin <code>__init__.py</code>, los imports son planos y solo funcionan si el directorio de trabajo es <code>src</code>.</td></tr>
+<tr><td><code>tests</code></td><td class="num">4 KB</td><td class="num">1</td>
+ <td>Siete pruebas que cubren fuentes, continuidad temporal, externas, fuga, backtest y forma del pronóstico. <span class="tag t-ok">Bien elegidas</span> conceptualmente, <span class="tag t-me">frágiles</span> en implementación por usar conteos literales.</td></tr>
+<tr><td><code>api</code> · <code>webapp</code></td><td class="num">0 B</td><td class="num">2</td>
+ <td>Cada una con un README de una línea. <span class="tag t-ba">Ruido estructural</span>: prometen una fase que no existe. Mejor eliminarlas y mencionar el plan en el README raíz.</td></tr>
+<tr><td><code>.runtime</code></td><td class="num">0 B</td><td class="num">1</td>
+ <td>Directorio de aislamiento para IPython y Jupyter creado por <code>ejecutar_notebooks.py</code>. <span class="tag t-ok">Buena práctica</span>: evita contaminar el perfil global del usuario. Correctamente ignorado.</td></tr>
+</tbody></table></div>
+
+<!-- ══════════════════ FLUJO ══════════════════ -->
+<h2 class="sec" id="flujo">Flujo de datos de punta a punta</h2>
+
+<p>Mapa real de qué lee y qué escribe cada módulo, extraído del código.</p>
+
+<div class="flow"><b>[ FUENTES EXTERNAS ]</b>
+  microdatos.dane.gov.co (catálogos 473 y 856) ─┐
+  datos.gov.co (TRM)  ·  cpc.ncep.noaa.gov (ONI) ─┼─┐
+                                                  │ │
+<b>[ RAW ]</b>  data/raw/dane/*.zip  (8,1 GB, 18 archivos) ◄┘ │   ← pipeline.download_sources()
+        data/raw/dian/*             (129 MB) <u>sin consumidor</u>
+        data/raw/MANIFIESTO_DATOS.json          ← build_manifest.py  (SHA-256)
+                     │
+                     │  filtra ADUA=35 · lee por bloques de 150.000 · normaliza decimales
+                     ▼
+<b>[ LANDING ]</b>  impo_buenaventura_2012_2026.csv.gz  (272 MB, 6.703.355 filas)
+            impo_buenaventura_2012_2024.csv.gz  (229 MB) <u>congelado para el EDA</u>
+                     │
+        ┌────────────┴────────────┐
+        ▼                         ▼
+<b>[ TRUSTED ]</b>                 <b>[ EDA histórico ]</b>
+ serie_mensual (173 meses)     eda_results.json  (60 claves)
+ pais_mes · capitulo_mes       serie/pais/capitulo 2012-2024
+ audit_sources_2012_2026       5 figuras PNG
+ datos_limpios_ml (29 cols)         │  ← eda_compute.py  <u>requiere 8 GB RAM</u>
+        │                           ▼
+        │                   EDA_52_Preguntas.docx → .pdf (21 pág.)
+        │                   EDA_Visor_52_Preguntas.html
+        │                           ← build_artifacts.py · make_viewer.py
+        │
+        │  ◄── variables_externas_mensuales.csv  ← external_data.py  <u>rezago de publicación</u>
+        │      (TRM media y volatilidad · ONI · fase ENSO)
+        │
+        │  rezagos 1-2-3-6-12 · medias móviles 3 y 12 · calendario · tendencia
+        │  TODAS las externas desplazadas 1 mes  <i>← sin fuga, verificado</i>
+        ▼
+<b>[ MODELADO ]</b>  walk-forward expansivo, 24 pasos de un mes
+   Naive_12  vs  Ridge  vs  HistGradientBoosting   (ambos con log1p/expm1)
+   selección por WAPE  <u>sobre la misma ventana que se reporta</u>
+        │
+        ├──► reportes/metricas_modelos.csv          (6 filas: 3 modelos × 2 objetivos)
+        ├──► data/surface/predicciones_validacion.csv (144 filas del backtest)
+        ├──► modelos/*.joblib                        <u>borra los previos antes de entrenar</u>
+        ▼
+<b>[ SURFACE ]</b>  proximo_pronostico.csv          ← modeling.train_and_evaluate()
+            proximo_pronostico_inferencia.csv ← predict.py  <u>segunda ruta, mismo resultado</u>
+</div>
+
+<!-- ══════════════════ MODULOS ══════════════════ -->
+<h2 class="sec" id="modulos">Los 12 módulos de <code>src</code></h2>
+
+<div class="tw"><table>
+<thead><tr><th>Módulo</th><th class="num">Líneas</th><th class="num">Fn</th><th class="num">Docs</th><th>Rol y estado</th></tr></thead>
+<tbody>
+<tr><td><code>pipeline.py</code></td><td class="num">228</td><td class="num">9</td><td class="num">0</td>
+ <td>Descarga, consolidación incremental y capa trusted. <b>El módulo más crítico y más complejo del proyecto</b>: detección de separador, ZIP anidados, normalización de decimales, concatenación binaria con el snapshot histórico. Cero explicación en el código.</td></tr>
+<tr><td><code>modeling.py</code></td><td class="num">177</td><td class="num">6</td><td class="num">0</td>
+ <td>Ingeniería de variables, backtest, selección, reentrenamiento y pronóstico. Bien estructurado. Concentra tres de los cuatro hallazgos críticos.</td></tr>
+<tr><td><code>eda_compute.py</code></td><td class="num">297</td><td class="num">4</td><td class="num">0</td>
+ <td>Calcula las 60 claves del EDA y las 5 figuras. Script plano sin funciones reutilizables; carga los 5,6 M de registros de una vez.</td></tr>
+<tr><td><code>build_artifacts.py</code></td><td class="num">390</td><td class="num">7</td><td class="num">0</td>
+ <td>Genera el Word del EDA a partir de <code>eda_results.json</code>. Las 52 preguntas viven como datos dentro del código, lo que permitió extraerlas y reutilizarlas en el visor HTML. <span class="tag t-ok">Buen diseño accidental</span>.</td></tr>
+<tr><td><code>external_data.py</code></td><td class="num">50</td><td class="num">2</td><td class="num">0</td>
+ <td>Descarga y mensualiza TRM y ONI. Limpio y legible. Calcula <code>enso_fase</code> que después nadie usa.</td></tr>
+<tr><td><code>ejecutar_notebooks.py</code></td><td class="num">42</td><td class="num">1</td><td class="num">0</td>
+ <td>Orquestador con aislamiento de entorno Jupyter. <span class="tag t-ok">Bien resuelto</span>.</td></tr>
+<tr><td><code>predict.py</code></td><td class="num">32</td><td class="num">1</td><td class="num">0</td>
+ <td>Inferencia desde los modelos guardados. Duplica funcionalidad de <code>modeling.py</code>.</td></tr>
+<tr><td><code>build_manifest.py</code></td><td class="num">41</td><td class="num">2</td><td class="num">0</td>
+ <td>SHA-256 de las fuentes con rutas relativas. <span class="tag t-ok">Correcto</span>, incluso valida que no haya rutas absolutas filtradas.</td></tr>
+<tr><td><code>project_paths.py</code></td><td class="num">30</td><td class="num">1</td><td class="num">0</td>
+ <td>Resolución de rutas con override por variable de entorno. Buena idea; crea directorios como efecto secundario del import.</td></tr>
+<tr><td><code>render_pdf_qa.py</code></td><td class="num">28</td><td class="num">0</td><td class="num">0</td>
+ <td>Miniaturas del PDF. Usa Pillow sin declararlo y pide páginas que no existen.</td></tr>
+<tr><td><code>download_filter.py</code></td><td class="num">9</td><td class="num">0</td><td class="num">1</td>
+ <td>Alias de compatibilidad. Único archivo con docstring en todo el proyecto.</td></tr>
+<tr><td><code>make_viewer.py</code></td><td class="num">120</td><td class="num">2</td><td class="num">1</td>
+ <td>Visor HTML de las 52 preguntas. Añadido en esta revisión.</td></tr>
+</tbody></table></div>
+
+<p><b>Notebooks:</b> <code>00</code>, <code>01</code>, <code>02</code> y <code>04</code> son envolturas de 3 celdas sobre los módulos <code>.py</code>; <code>03_EDA</code> tiene 54 celdas de código y 55 de markdown. La separación es correcta —la lógica vive en Python y los notebooks son la narrativa— pero el README no lo dice y cuatro módulos (<code>build_artifacts</code>, <code>render_pdf_qa</code>, <code>eda_compute</code>, <code>download_filter</code>) no se mencionan en ninguna parte de la documentación.</p>
+
+<!-- ══════════════════ ARTEFACTOS ══════════════════ -->
+<h2 class="sec" id="artefactos">Artefactos, duplicados y huérfanos</h2>
+
+<p>Rastreé el generador de cada archivo producido. Estos son los que no tienen dueño o están duplicados:</p>
+
+<div class="tw"><table>
+<thead><tr><th>Archivo</th><th style="width:110px">Estado</th><th>Diagnóstico</th></tr></thead>
+<tbody>
+<tr><td><code>data/trusted/extraction_summary.json</code></td><td><span class="tag t-al">Huérfano</span></td>
+ <td>Ningún módulo lo genera. Tiene un esquema <b>incompatible</b> con su sucesor: usa las claves <code>rows</code>, <code>columns</code>, <code>source_files</code>, mientras que <code>extraction_summary_2012_2026.json</code> usa <code>rows_buenaventura</code>, <code>period_start</code>, <code>period_end</code>. Dos generaciones de código conviviendo.</td></tr>
+<tr><td><code>data/trusted/audit_sources.csv</code></td><td><span class="tag t-me">Heredado</span></td>
+ <td>158 líneas, snapshot de la generación anterior. <b>Sí se usa</b>: <code>consolidate()</code> lo lee para concatenar la auditoría incremental. Es una dependencia real no documentada.</td></tr>
+<tr><td><code>data/trusted/eda_results.json</code></td><td><span class="tag t-me">Duplicado</span></td>
+ <td>Copia byte-idéntica del que está en <code>eda_historico_2012_2024/</code>. Nadie lo lee desde la raíz de <code>trusted</code>.</td></tr>
+<tr><td><code>data/surface/serie_mensual_buenaventura.csv</code></td><td><span class="tag t-me">Duplicado</span></td>
+ <td>MD5 idéntico al de <code>trusted</code>. Es intencional (la capa <i>surface</i> expone copias ligeras), pero duplicar sin transformar no aporta.</td></tr>
+<tr><td><code>data/surface/proximo_pronostico_inferencia.csv</code></td><td><span class="tag t-al">Duplicado funcional</span></td>
+ <td>Lo genera <code>predict.py</code> con el mismo resultado que <code>proximo_pronostico.csv</code>. Hoy coinciden; el día que diverjan nadie sabrá cuál es el bueno.</td></tr>
+<tr><td><code>data/landing/impo_buenaventura_2012_2024.csv.gz</code></td><td><span class="tag t-me">Sin generador</span></td>
+ <td>229 MB que ningún código produce hoy —solo consume—. Es el snapshot que hace posible la consolidación incremental. Si se pierde, <code>full_rebuild=True</code> lo reconstruye, pero eso no está escrito en ninguna parte.</td></tr>
+<tr><td><code>reportes/Tutorial_Proyecto_Buenaventura.docx</code></td><td><span class="tag t-me">Sin generador</span></td>
+ <td>50 KB creados fuera del pipeline. No es un problema, pero conviene marcarlo como documento manual para que nadie espere regenerarlo.</td></tr>
+<tr><td><code>reportes/soporte/</code></td><td><span class="tag t-ba">Prometido, ausente</span></td>
+ <td><code>build_artifacts.py</code> declara escribir ahí <code>EDA_52_Preguntas_codigo.ipynb</code>. La carpeta no existe en disco.</td></tr>
+<tr><td><code>data/raw/dian/</code></td><td><span class="tag t-al">Sin consumidor</span></td>
+ <td>129 MB que ningún módulo lee. Solo entran en el manifiesto y en el conteo de la prueba (20 archivos = 18 ZIP + 2 DIAN).</td></tr>
+</tbody></table></div>
+
+<!-- ══════════════════ EVIDENCIA ══════════════════ -->
+<h2 class="sec" id="evidencia">Evidencia de ejecución</h2>
+
+<p>Ejecuté el proyecto en un entorno Linux limpio, Python 3.10, dependencias instaladas desde cero, con los datos enlazados en solo lectura y las escrituras redirigidas a una copia. No se modificó ningún archivo original.</p>
+
+<div class="tw"><table>
+<thead><tr><th>Prueba</th><th style="width:100px">Resultado</th><th class="num" style="width:80px">Tiempo</th><th>Detalle</th></tr></thead>
+<tbody>
+<tr><td>Suite de pruebas</td><td><span class="tag t-ok">7/7</span></td><td class="num">2,2 s</td><td>Fuentes, manifiesto, continuidad, externas, fuga, backtest y forma del pronóstico</td></tr>
+<tr><td><code>modeling.py</code></td><td><span class="tag t-ok">Reproduce</span></td><td class="num">5,8 s</td><td>Las 6 métricas coinciden hasta la 13.ª cifra significativa; la diferencia es ruido de BLAS</td></tr>
+<tr><td>Pronóstico CIF</td><td><span class="tag t-ok">Idéntico</span></td><td class="num">—</td><td>USD 2.070.875.309,8540323 en ambas ejecuciones, hasta el último decimal</td></tr>
+<tr><td><code>predict.py</code></td><td><span class="tag t-ok">Coincide</span></td><td class="num">1,5 s</td><td>Las dos rutas de inferencia dan el mismo valor</td></tr>
+<tr><td>Cifras del EDA</td><td><span class="tag t-ok">Reproducen</span></td><td class="num">40 s</td><td>5.625.947 filas, 156 meses, y <code>target_sum/mean/max/min/std</code> coinciden al centavo con <code>eda_results.json</code></td></tr>
+<tr><td>Integridad del consolidado</td><td><span class="tag t-ok">Limpia</span></td><td class="num">3 min</td><td>6.703.355 filas recorridas: todas ADUA=35, cero malformadas, cero meses solapados entre los 18 ZIP</td></tr>
+<tr><td>Alineación de rezagos</td><td><span class="tag t-ok">Exacta</span></td><td class="num">—</td><td>Cero discrepancias entre <code>cif_usd_lag_1</code> y el valor del mes anterior en 173 meses</td></tr>
+<tr><td><code>eda_compute.py</code></td><td><span class="tag t-cr">Killed</span></td><td class="num">34 s</td><td>Muerto por el gestor de memoria con 3 GB disponibles. Necesita ~8 GB</td></tr>
+<tr><td>Carga de <code>.joblib</code></td><td><span class="tag t-al">5 avisos</span></td><td class="num">—</td><td><code>InconsistentVersionWarning</code>: entrenados con scikit-learn 1.9.0, cargados con 1.7.2</td></tr>
+</tbody></table></div>
+
+<!-- ══════════════════ CRITICOS ══════════════════ -->
+<h2 class="sec" id="criticos">Hallazgos críticos</h2>
+
+<div class="f cr">
+  <h4><span class="id">C-1</span><span class="tag t-cr">Crítico</span> El pronóstico se detendrá cuando NOAA se retrase</h4>
+  <p><code>modeling.py</code> exige que todas las variables estén presentes en la fila del mes a pronosticar y lanza <code>ValueError: Features faltantes para inferencia</code> si falta una. El ONI se publica con rezago y <code>variables_externas_mensuales.csv</code> ya tiene <code>oni_anomalia</code> vacío desde junio de 2026. Lo mismo ocurre con <code>trm_volatilidad</code> cuando el mes nuevo tiene un solo día hábil cargado: la desviación estándar de un único valor es nula.</p>
+  <div class="fix"><b>Corrección</b>Rellenar hacia adelante las externas con un límite explícito (por ejemplo dos meses) y registrar una columna <code>externas_imputadas</code> en el pronóstico, para que el consumidor sepa que esa predicción usó un valor arrastrado en vez de observado.</div>
+</div>
+
+<div class="f cr">
+  <h4><span class="id">C-2</span><span class="tag t-cr">Crítico</span> Reentrenar destruye los modelos antes de saber si el nuevo entrenamiento funciona</h4>
+  <p>La primera instrucción de <code>train_and_evaluate()</code> es <code>for stale in MODELS.glob("*.joblib"): stale.unlink()</code>. Si el proceso falla después —por C-1, por falta de memoria, por una fuente corrupta— el proyecto queda sin modelos y <code>predict.py</code> deja de funcionar. Combinado con C-1, esto es un fallo en cascada con fecha probable el mes entrante.</p>
+  <div class="fix"><b>Corrección</b>Escribir los nuevos modelos en un directorio temporal y hacer el intercambio solo cuando el entrenamiento y el pronóstico hayan terminado sin excepciones.</div>
+</div>
+
+<div class="f cr">
+  <h4><span class="id">C-3</span><span class="tag t-cr">Crítico</span> La selección de modelo usa la misma ventana con la que se reporta el desempeño</h4>
+  <p>Los tres candidatos se evalúan sobre los últimos 24 meses y el ganador se elige por el menor WAPE de esa misma ventana. El WAPE que después se publica para el ganador está sesgado a la baja, porque incorpora la ventaja de haber sido elegido sobre esos datos. El efecto se agrava porque la diferencia real es minúscula: <b>7,3403 % contra 7,3470 %</b> en CIF, es decir 0,007 puntos porcentuales sobre 24 observaciones. En peso neto el margen es mayor (9,51 % contra 10,16 %) y ahí la elección sí es defendible.</p>
+  <div class="fix"><b>Corrección</b>Separar una ventana de selección anterior a la de evaluación, o usar validación anidada. Como mínimo, reportar la dispersión mensual del error y declarar explícitamente que la diferencia entre Ridge y HistGradientBoosting en CIF no es significativa.</div>
+</div>
+
+<div class="f cr">
+  <h4><span class="id">C-4</span><span class="tag t-cr">Crítico</span> La consolidación incremental confía en el orden de columnas</h4>
+  <p>Cuando <code>consolidate()</code> reutiliza el snapshot histórico, escribe los datos nuevos sin encabezado y los concatena binariamente con el archivo de 2012-2024. Nada verifica que las columnas de los paquetes 2025 y 2026 —que vienen del catálogo DANE <b>856</b>, distinto del <b>473</b> del histórico— coincidan en número y orden con las del snapshot. Verifiqué que hoy coinciden y que las 6.703.355 filas están bien formadas, pero esa coincidencia es accidental: si un año trae una columna adicional o en otro orden, se producen cientos de miles de filas desalineadas sin ningún error.</p>
+  <div class="fix"><b>Corrección</b>Definir un esquema fijo, aplicar <code>part = part.reindex(columns=ESQUEMA)</code> antes de cada escritura y comparar el encabezado del snapshot histórico contra ese esquema al inicio, abortando si difieren.</div>
+</div>
+
+<!-- ══════════════════ ALTOS ══════════════════ -->
+<h2 class="sec" id="altos">Hallazgos altos</h2>
+
+<div class="f al">
+  <h4><span class="id">A-1</span><span class="tag t-al">Alto</span> Pillow se usa pero no se declara</h4>
+  <p><code>render_pdf_qa.py</code> importa <code>PIL</code>, que no aparece en <code>requirements.txt</code>. En una instalación limpia el script falla con <code>ModuleNotFoundError</code>. Es la única dependencia no declarada de las trece que usa el proyecto.</p>
+  <div class="fix"><b>Corrección</b>Añadir <code>pillow&gt;=10.0</code> a <code>requirements.txt</code>.</div>
+</div>
+
+<div class="f al">
+  <h4><span class="id">A-2</span><span class="tag t-al">Alto</span> Los modelos versionados están atados a una versión de scikit-learn que no se fija</h4>
+  <p><code>requirements.txt</code> dice <code>scikit-learn&gt;=1.5</code>, pero los <code>.joblib</code> del repositorio se serializaron con la 1.9.0. Al cargarlos con 1.7.2 obtuve cinco <code>InconsistentVersionWarning</code> —uno por cada estimador anidado—. Las pruebas pasan, pero scikit-learn advierte explícitamente que el resultado puede ser inválido. Para un proyecto que versiona binarios y presume de trazabilidad SHA-256, es una incoherencia.</p>
+  <div class="fix"><b>Corrección</b>Fijar <code>scikit-learn==1.9.0</code> y, en general, pasar a versiones exactas para todo lo que afecte a los artefactos serializados.</div>
+</div>
+
+<div class="f al">
+  <h4><span class="id">A-3</span><span class="tag t-al">Alto</span> El EDA necesita 8 GB de RAM y no está documentado</h4>
+  <p><code>eda_compute.py</code> carga los 5,6 millones de registros en un solo <code>read_csv</code> —2.249 MB según su propia pregunta 3— y luego crea copias intermedias al normalizar los separadores decimales. Con 3 GB disponibles el proceso muere a los 34 segundos con <code>Killed</code>, sin traza ni mensaje. Un tercero que intente reproducir el EDA no tendrá forma de saber qué pasó.</p>
+  <div class="fix"><b>Corrección</b>Documentar el requisito y, mejor, procesar por bloques como ya hace <code>pipeline.build_trusted()</code>. La lógica de agregación es la misma y el consumo bajaría a unos cientos de megabytes.</div>
+</div>
+
+<div class="f al">
+  <h4><span class="id">A-4</span><span class="tag t-al">Alto</span> <code>src</code> no es un paquete Python</h4>
+  <p>Los módulos se importan de forma plana (<code>from project_paths import ...</code>) sin <code>__init__.py</code>. Eso obliga a ejecutar todo desde dentro de <code>src</code> y hace que las pruebas necesiten <code>sys.path.insert</code> para funcionar. Cualquier herramienta estándar —empaquetado, cobertura, análisis estático— tropieza con esto.</p>
+  <div class="fix"><b>Corrección</b>Añadir <code>src/__init__.py</code>, convertir los imports en relativos y ejecutar con <code>python -m src.modeling</code>.</div>
+</div>
+
+<div class="f al">
+  <h4><span class="id">A-5</span><span class="tag t-al">Alto</span> Fechas de corte incrustadas en cuatro lugares</h4>
+  <p><code>build_trusted()</code> compara contra <code>Timestamp("2026-05-01")</code> para decidir si la serie está actualizada; el resumen de extracción escribe <code>"period_end": "2026-05"</code> como literal; <code>_parse_dates()</code> valida <code>year.between(2012, 2026)</code>, lo que hará desaparecer silenciosamente los datos de 2027; y las pruebas comparan contra un rango fijo. Cuando lleguen los datos de 2027, tres de estos cuatro puntos fallarán en silencio.</p>
+  <div class="fix"><b>Corrección</b>Derivar todos los límites de los datos observados y validar contra el rango real, no contra constantes.</div>
+</div>
+
+<div class="f al">
+  <h4><span class="id">A-6</span><span class="tag t-al">Alto</span> Dos rutas de inferencia que pueden divergir</h4>
+  <p><code>modeling.train_and_evaluate()</code> produce <code>proximo_pronostico.csv</code> y <code>predict.predict_next_month()</code> produce <code>proximo_pronostico_inferencia.csv</code>. Verifiqué que hoy coinciden exactamente, pero son dos implementaciones distintas del mismo cálculo. En el momento en que una cambie, habrá dos pronósticos publicados y ninguna regla para saber cuál rige.</p>
+  <div class="fix"><b>Corrección</b>Que <code>modeling</code> invoque a <code>predict</code>, o que <code>predict</code> sea la única ruta de inferencia y <code>modeling</code> solo entrene.</div>
+</div>
+
+<div class="f al">
+  <h4><span class="id">A-7</span><span class="tag t-al">Alto</span> Las fechas inválidas desaparecen sin dejar rastro</h4>
+  <p><code>_parse_dates()</code> convierte en <code>NaT</code> cualquier fecha fuera del rango esperado y el <code>groupby</code> posterior las elimina. No hay conteo, ni aviso, ni registro en la auditoría. Si un paquete DANE trajera un lote con fechas corruptas, el proyecto lo absorbería en silencio y las cifras mensuales quedarían bajas sin que nadie lo notara.</p>
+  <div class="fix"><b>Corrección</b>Contar las filas descartadas, escribirlas en <code>audit_sources</code> y abortar si superan un umbral, por ejemplo el 0,1 %.</div>
+</div>
+
+<div class="f al">
+  <h4><span class="id">A-8</span><span class="tag t-al">Alto</span> El separador decimal se decide valor por valor</h4>
+  <p><code>normalize_numeric()</code> examina cada celda: si contiene una coma la trata como decimal europeo y elimina los puntos; si no, la deja tal cual. El riesgo es que un valor como <code>1.234</code> —sin coma— pierda el punto y se convierta en <code>1234</code>, multiplicándose por mil. Con los datos actuales la heurística funciona, pero es una decisión que debería tomarse una vez por columna y por archivo, no por celda.</p>
+  <div class="fix"><b>Corrección</b>Inferir el formato de cada columna con una muestra, aplicarlo de forma uniforme y validar rangos plausibles después de convertir.</div>
+</div>
+
+<div class="f al">
+  <h4><span class="id">A-9</span><span class="tag t-al">Alto</span> La exclusión de junio de 2022 está escrita a mano</h4>
+  <p>Hay una condición literal que descarta el mes 6 cuando el archivo es <code>Impo_2022_2.zip</code>. Verifiqué que hoy no existe ningún otro solapamiento entre los 18 paquetes, así que la regla es correcta, pero es una excepción codificada en vez de una invariante verificada. Si el DANE republica un año con traslape, nadie se enterará.</p>
+  <div class="fix"><b>Corrección</b>Detectar solapamientos comparando los pares (archivo, mes) ya procesados, registrar el conflicto en la auditoría y aplicar una regla explícita de precedencia.</div>
+</div>
+
+<!-- ══════════════════ MEDIOS ══════════════════ -->
+<h2 class="sec" id="medios">Hallazgos medios</h2>
+
+<div class="cols">
+<div>
+<div class="f me">
+  <h4><span class="id">M-1</span> Cero docstrings</h4>
+  <p>32 funciones en 12 módulos, ninguna documentada. Un comentario en 1.398 líneas. Toda la explicación vive fuera del código, así que quien abra <code>pipeline.py</code> —el módulo más complejo— no encuentra nada.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-2</span> Sin diccionario de datos</h4>
+  <p>Las 23 columnas DANE (<code>VACID</code>, <code>PNK</code>, <code>PBK</code>, <code>VAFODO</code>, <code>NABAN</code>, <code>PORARA</code>, <code>DEREL</code>…) no se definen en ningún documento. Todo el proyecto depende de que <code>VACID</code> sea el valor CIF, y eso no está escrito en ninguna parte.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-3</span> MAPE mal formulado</h4>
+  <p><code>np.mean(absolute / y)</code> divide sin valor absoluto en el denominador y falla si algún mes vale cero. Con esta serie nunca ocurre, pero la fórmula es incorrecta.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-4</span> Intervalos simétricos sobre modelo logarítmico</h4>
+  <p>El intervalo del 80 % se construye como <code>predicción ± 1,2816 × RMSE</code> en escala de nivel, mientras el modelo se ajusta en <code>log1p</code>. La incertidumbre real es asimétrica.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-5</span> Código muerto</h4>
+  <p><code>enso_fase</code> se calcula con <code>pd.cut</code> y se guarda, pero <code>select_dtypes(include="number")</code> la descarta al construir las variables. Nunca llega al modelo.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-6</span> Efectos secundarios en el import</h4>
+  <p><code>project_paths</code> crea nueve directorios al importarse y <code>modeling</code> escribe en <code>os.environ</code>. Importar un módulo no debería modificar el sistema de archivos.</p>
+</div>
+</div>
+<div>
+<div class="f me">
+  <h4><span class="id">M-7</span> Pruebas frágiles</h4>
+  <p>Se afirma que hay exactamente 18 ZIP, 20 archivos en el manifiesto y 6 filas de métricas. Todas fallarán al añadir un año o un modelo, sin que nada esté realmente roto. Falta la prueba más valiosa: que los rezagos estén alineados.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-8</span> Dos esquemas de resumen incompatibles</h4>
+  <p><code>extraction_summary.json</code> usa <code>rows</code>/<code>columns</code>/<code>source_files</code>; <code>extraction_summary_2012_2026.json</code> usa <code>rows_buenaventura</code>/<code>period_start</code>/<code>period_end</code>. Cualquier lector automático tendría que manejar ambos.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-9</span> Duplicados exactos</h4>
+  <p><code>surface/serie_mensual_buenaventura.csv</code> tiene el mismo MD5 que el de <code>trusted</code>, y <code>trusted/eda_results.json</code> es copia byte a byte del que está en <code>eda_historico_2012_2024/</code>.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-10</span> Validación visual desincronizada</h4>
+  <p><code>render_pdf_qa.py</code> renderiza las páginas 23 y 24 de un PDF que tiene 21. Genera 6 de las 8 imágenes que promete.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-11</span> Sin control de versiones</h4>
+  <p>No hay repositorio git inicializado. Con 3,4 MB de contenido versionable frente a 8,7 GB de datos, la separación es fácil: bastaría <code>git init</code> y el <code>.gitignore</code> que ya existe.</p>
+</div>
+<div class="f me">
+  <h4><span class="id">M-12</span> Cuatro módulos indocumentados</h4>
+  <p><code>build_artifacts.py</code>, <code>render_pdf_qa.py</code>, <code>eda_compute.py</code> y <code>download_filter.py</code> no aparecen en ningún README. El README describe los notebooks, no los módulos donde está la lógica.</p>
+</div>
+</div>
+</div>
+
+<!-- ══════════════════ BAJOS ══════════════════ -->
+<h2 class="sec" id="bajos">Hallazgos bajos</h2>
+
+<ul>
+<li><b>B-1 · Carpetas vacías que prometen.</b> <code>api/</code> y <code>webapp/</code> contienen un README de una línea cada una. Comunican una fase que no existe; conviene eliminarlas y mencionar el plan en el README raíz.</li>
+<li><b>B-2 · Artefacto declarado y ausente.</b> <code>build_artifacts.py</code> declara escribir <code>reportes/soporte/EDA_52_Preguntas_codigo.ipynb</code>, pero la carpeta no existe en disco.</li>
+<li><b>B-3 · Sin LICENSE ni CHANGELOG.</b> Menor en contexto académico, relevante si el trabajo se publica o se comparte.</li>
+<li><b>B-4 · Datos DIAN sin uso.</b> 129 MB descargados y registrados en el manifiesto que ningún módulo consume. O se documenta su papel como contraste, o sobran.</li>
+<li><b>B-5 · Sin <code>pyproject.toml</code>.</b> El proyecto no es instalable ni empaquetable; todo depende de ejecutar scripts desde una ruta concreta.</li>
+</ul>
+
+<!-- ══════════════════ PLAN ══════════════════ -->
+<h2 class="sec" id="plan">Plan de remediación priorizado</h2>
+
+<p>Ordenado por relación entre riesgo evitado y esfuerzo. Los tres primeros bloques valen mucho más que el resto.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:34px">#</th><th>Acción</th><th style="width:90px">Esfuerzo</th><th>Qué evita</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Añadir <code>pillow</code> y fijar <code>scikit-learn==1.9.0</code> en <code>requirements.txt</code></td><td><span class="tag t-ok">2 min</span></td><td>Que una instalación limpia falle o cargue modelos con advertencias de incompatibilidad</td></tr>
+<tr><td>2</td><td><code>git init</code> con el <code>.gitignore</code> existente</td><td><span class="tag t-ok">5 min</span></td><td>Pérdida de trabajo; habilita revisión de cambios. Solo 3,4 MB entran al repositorio</td></tr>
+<tr><td>3</td><td>Escritura atómica de modelos: temporal + intercambio final <span class="tag t-cr">C-2</span></td><td><span class="tag t-ok">15 min</span></td><td>Quedarse sin modelos tras un fallo de reentrenamiento</td></tr>
+<tr><td>4</td><td>Relleno hacia adelante acotado de TRM y ONI con bandera de imputación <span class="tag t-cr">C-1</span></td><td><span class="tag t-me">1 h</span></td><td>Que el pronóstico se detenga cuando NOAA se retrase — el fallo más probable a corto plazo</td></tr>
+<tr><td>5</td><td>Esquema fijo de columnas en la consolidación incremental <span class="tag t-cr">C-4</span></td><td><span class="tag t-me">1 h</span></td><td>Desalineación silenciosa de cientos de miles de filas</td></tr>
+<tr><td>6</td><td>Declarar en el informe que Ridge y HGB empatan en CIF <span class="tag t-cr">C-3</span></td><td><span class="tag t-ok">20 min</span></td><td>La objeción más probable en la sustentación</td></tr>
+<tr><td>7</td><td>Escribir el diccionario de las 23 columnas DANE <span class="tag t-me">M-2</span></td><td><span class="tag t-me">2 h</span></td><td>Que el proyecto sea ilegible para cualquiera que no seas tú</td></tr>
+<tr><td>8</td><td>Docstrings en los 12 módulos, empezando por <code>pipeline.py</code> <span class="tag t-me">M-1</span></td><td><span class="tag t-me">3 h</span></td><td>Deuda de mantenimiento; es lo primero que mira un revisor de código</td></tr>
+<tr><td>9</td><td>Eliminar fechas literales y derivarlas de los datos <span class="tag t-al">A-5</span></td><td><span class="tag t-me">2 h</span></td><td>Fallos silenciosos cuando lleguen los datos de 2027</td></tr>
+<tr><td>10</td><td>Procesar el EDA por bloques como ya hace <code>build_trusted</code> <span class="tag t-al">A-3</span></td><td><span class="tag t-al">4 h</span></td><td>Que el EDA solo sea reproducible en máquinas con 8 GB libres</td></tr>
+<tr><td>11</td><td>Unificar las dos rutas de inferencia <span class="tag t-al">A-6</span></td><td><span class="tag t-me">1 h</span></td><td>Dos pronósticos publicados sin regla de precedencia</td></tr>
+<tr><td>12</td><td>Ventana de selección separada de la de evaluación <span class="tag t-cr">C-3</span></td><td><span class="tag t-al">4 h</span></td><td>El sesgo optimista del WAPE reportado</td></tr>
+<tr><td>13</td><td>Convertir <code>src</code> en paquete e instalarlo <span class="tag t-al">A-4</span></td><td><span class="tag t-al">3 h</span></td><td>Dependencia del directorio de trabajo; habilita herramientas estándar</td></tr>
+<tr><td>14</td><td>Limpiar duplicados y huérfanos de <code>data/trusted</code></td><td><span class="tag t-me">1 h</span></td><td>Confusión sobre cuál artefacto es el vigente</td></tr>
+</tbody></table></div>
+
+<p><b>Con los puntos 1 a 6 —unas cuatro horas de trabajo— el proyecto pasa de frágil a operacionalmente sólido.</b> El resto es calidad y mantenibilidad, importante pero no urgente.</p>
+
+<!-- ══════════════════ METODOLOGIA ══════════════════ -->
+<h2 class="sec" id="metodologia">Cómo se hizo esta revisión</h2>
+
+<p>Todo lo afirmado en este reporte procede de inspección directa del código o de ejecución real. No hay estimaciones.</p>
+
+<ul>
+<li><b>Lectura completa</b> de los 12 módulos Python, los 5 notebooks, la suite de pruebas y los seis documentos de texto del proyecto.</li>
+<li><b>Recorrido de las 6.703.355 filas</b> del consolidado para verificar el filtro de aduana, la ausencia de filas malformadas y la cobertura mensual por archivo fuente.</li>
+<li><b>Verificación numérica de la alineación de rezagos</b> comparando cada valor de <code>cif_usd_lag_1</code> contra el <code>cif_usd</code> del mes previo en los 173 meses.</li>
+<li><b>Ejecución en entorno limpio</b> (Linux, Python 3.10, dependencias desde cero) con los datos originales enlazados en solo lectura y las escrituras redirigidas a una copia. Ningún archivo del proyecto fue modificado durante la revisión.</li>
+<li><b>Reconstrucción independiente</b> de los agregados del EDA mediante lectura por bloques, para contrastarlos contra <code>eda_results.json</code> sin depender del script original.</li>
+<li><b>Análisis estático de imports</b> contra <code>requirements.txt</code> para detectar dependencias no declaradas.</li>
+<li><b>Rastreo del generador</b> de cada artefacto producido, para identificar huérfanos y duplicados.</li>
+<li><b>Comparación por MD5</b> de los archivos sospechosos de duplicación.</li>
+</ul>
+
+</main>
+</div>
+
+<footer>
+  Reporte generado el 5 de agosto de 2026 sobre el estado del proyecto en <code>Proyecto_Buenaventura_Final</code>.
+  Documentos relacionados: <code>TUTORIAL_EJECUCION.md</code> · <code>reportes/EDA_Visor_52_Preguntas.html</code>
+</footer>
+
+<script>
+(function(){
+  const s=document.getElementById('s'), cnt=document.getElementById('cnt');
+  const units=[...document.querySelectorAll('main .f, main tbody tr, main ul > li')];
+  units.forEach(u=>u.dataset.t=(u.textContent||'').toLowerCase());
+  const secs=[...document.querySelectorAll('h2.sec')];
+  function upd(){
+    const q=s.value.trim().toLowerCase();
+    let hits=0;
+    units.forEach(u=>{
+      const m=!q||u.dataset.t.includes(q);
+      u.classList.toggle('hide',!m); if(m&&q)hits++;
+    });
+    // ocultar secciones sin coincidencias
+    secs.forEach(h=>{
+      let n=h.nextElementSibling, any=!q;
+      while(n && !(n.tagName==='H2'&&n.classList.contains('sec'))){
+        if(q){
+          if(n.classList&&n.classList.contains('f')&&!n.classList.contains('hide')) any=true;
+          if(n.querySelector&&n.querySelector('tbody tr:not(.hide), ul > li:not(.hide)')) any=true;
+        }
+        n=n.nextElementSibling;
+      }
+      h.classList.toggle('hide',!any);
+      let m=h.nextElementSibling;
+      while(m && !(m.tagName==='H2'&&m.classList.contains('sec'))){
+        if(!m.classList.contains('f')) m.classList.toggle('hide',!any);
+        m=m.nextElementSibling;
+      }
+    });
+    cnt.textContent=q?(hits+' coincidencias'):'';
+  }
+  s.addEventListener('input',upd);
+})();
+</script>
+</html>

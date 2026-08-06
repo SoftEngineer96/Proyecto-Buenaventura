@@ -1,0 +1,110 @@
+{
+  "base": "data/raw",
+  "files": [
+    {
+      "path": "data/raw/dane/Impo_2012.zip",
+      "bytes": 523669374,
+      "sha256": "fc5268c125d7694ae773f8f6daf0a98606bedcb0cbb223376ebc993a1e3b7770"
+    },
+    {
+      "path": "data/raw/dane/Impo_2013.zip",
+      "bytes": 543947257,
+      "sha256": "1bc8c379f2e458a5797ce954dbca071598036e2ade13fe29cd78ad89e1ce65e2"
+    },
+    {
+      "path": "data/raw/dane/Impo_2014.zip",
+      "bytes": 566027271,
+      "sha256": "899a994e0fe43f701ca055bc67275541e8a1eed00516be120180aa30d6ce21ef"
+    },
+    {
+      "path": "data/raw/dane/Impo_2015.zip",
+      "bytes": 537060361,
+      "sha256": "12d8c1b496d29d85222cd72ac53399108a97479918bf0197faf33cb4fefac94f"
+    },
+    {
+      "path": "data/raw/dane/Impo_2016.zip",
+      "bytes": 522576501,
+      "sha256": "e2739bd8ac36851a83a1dc30dfa390afee4d96ee6e0f03f46df8d60350e19c05"
+    },
+    {
+      "path": "data/raw/dane/Impo_2017.zip",
+      "bytes": 596264196,
+      "sha256": "de485616cc0d18ae13e27e2d35585f1ab6b076b2c4cee845ecceb1e7f2d90122"
+    },
+    {
+      "path": "data/raw/dane/Impo_2018.zip",
+      "bytes": 615166406,
+      "sha256": "2d0435560d1078dfd7584c2ccefca349c0b8b7f6a899fedb761d6fec75b77970"
+    },
+    {
+      "path": "data/raw/dane/Impo_2019.zip",
+      "bytes": 652784399,
+      "sha256": "feb8394809b513116f3be1a207ba9b69f2ab45e2d36c62ec8caf9452820c2d61"
+    },
+    {
+      "path": "data/raw/dane/Impo_2020.zip",
+      "bytes": 527119949,
+      "sha256": "83d10c3160d5e735489518fb341fcd51e7db271f7d948d02eef3315d6d303165"
+    },
+    {
+      "path": "data/raw/dane/Impo_2021_1.zip",
+      "bytes": 290765140,
+      "sha256": "fce48d8a9bf012f162507fdb5451bef1e45a57826433dbc5e6b2d9d523f97dda"
+    },
+    {
+      "path": "data/raw/dane/Impo_2021_2.zip",
+      "bytes": 334388835,
+      "sha256": "c86b3556e3c7b0e20a2cd250ed5ae780d1fe65e4383eeee75a240ffe42da1f05"
+    },
+    {
+      "path": "data/raw/dane/Impo_2022_1.zip",
+      "bytes": 330828617,
+      "sha256": "a4c51f9ce4df8c9cd312c9351257d4355de3a3251c1100524735bfe859bd010f"
+    },
+    {
+      "path": "data/raw/dane/Impo_2022_2.zip",
+      "bytes": 412244539,
+      "sha256": "91e3a92642d51329004da31e3b2dd15abb335b4e356876657ca9bdec2bbd8e17"
+    },
+    {
+      "path": "data/raw/dane/Impo_2023.zip",
+      "bytes": 605659322,
+      "sha256": "b301b9e217c690186487d1980e395cd0e06f302fea78c0d93e721d50a3fd84b3"
+    },
+    {
+      "path": "data/raw/dane/Impo_2024.zip",
+      "bytes": 625503658,
+      "sha256": "dc0e91f7055b4d3a6658481a07944c5a032e7c2924b899db9437f062fe8aec0a"
+    },
+    {
+      "path": "data/raw/dane/Impo_2025_1.zip",
+      "bytes": 338351928,
+      "sha256": "309bbbdf4fd4f3ef1da49191dd7f9b09d541108d9ff1d7c6d83d3ec515c917ed"
+    },
+    {
+      "path": "data/raw/dane/Impo_2025_2.zip",
+      "bytes": 375118574,
+      "sha256": "38f72d180670d2332954a5d3d9e4ff291a2d5463257bab4cf9202a0444a875c8"
+    },
+    {
+      "path": "data/raw/dane/Impo_2026.zip",
+      "bytes": 294345417,
+      "sha256": "de50058b6861e69faede77e55f6f1e7125728e3788933953bc8186cb37796d38"
+    },
+    {
+      "path": "data/raw/dian/Consultor-importaciones-y-exportaciones-para-seccionales.xlsx",
+      "bytes": 68583737,
+      "sha256": "5029434d121a21486a3d6df317939819a0e6079f38011475accdf29ad0ef58dd"
+    },
+    {
+      "path": "data/raw/dian/consultor_seccionales.zip",
+      "bytes": 66362288,
+      "sha256": "3987a8adf0c81cbb5aa3aae447e8521e03c4a317899962e27b6d069da32fc49a"
+    }
+  ],
+  "sources": {
+    "DANE_2012_2024": "https://microdatos.dane.gov.co/index.php/catalog/473/get-microdata",
+    "DANE_2025_2026": "https://microdatos.dane.gov.co/index.php/catalog/856/get-microdata",
+    "DIAN": "https://www.dian.gov.co/dian/cifras/Paginas/Consultor-de-Importaciones-y-Exportaciones-para-Seccionales.aspx"
+  }
+}

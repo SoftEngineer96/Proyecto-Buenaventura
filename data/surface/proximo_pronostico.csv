@@ -1,0 +1,3 @@
+fecha_pronostico,target,modelo,prediccion,limite_inferior_80,limite_superior_80,entrenado_hasta
+2026-06-01,cif_usd,Ridge,2070875309.8540323,1877015255.6974595,2264735364.0106053,2026-05-01
+2026-06-01,peso_neto_kg,HistGradientBoosting,1173604146.6945715,1004557886.6368873,1342650406.7522557,2026-05-01

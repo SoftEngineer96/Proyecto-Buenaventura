@@ -1,0 +1,261 @@
+<!doctype html><html lang="es"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guía · Socialización de la documentación</title>
+<style>
+:root{--bg:#0f1216;--card:#171b21;--b:#242a33;--b2:#2f3742;--tx:#e6e9ee;--mu:#94a0ad;--dim:#6c7783;
+--ac:#5aa9ff;--ok:#3ecf8e;--wa:#f0b429;--cr:#ff6b6b;--pu:#b78af0}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:15.5px/1.68 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--ac)} code{font:12.5px ui-monospace,Consolas,monospace;background:#0b0e12;border:1px solid var(--b);border-radius:4px;padding:1px 5px;color:#9fd0a8}
+header.top{position:sticky;top:0;z-index:30;background:#0f1216f2;backdrop-filter:blur(10px);border-bottom:1px solid var(--b);padding:12px 26px}
+header.top h1{margin:0;font-size:17.5px} header.top .sub{color:var(--mu);font-size:12.5px;margin-top:2px}
+#s{width:100%;max-width:380px;margin-top:9px;padding:8px 12px;border-radius:8px;border:1px solid var(--b);background:#11151a;color:var(--tx);font-size:13.5px}
+.wrap{display:grid;grid-template-columns:236px 1fr;gap:34px;max-width:1170px;margin:0 auto;padding:24px 26px 90px}
+nav{position:sticky;top:126px;align-self:start;font-size:13px;max-height:calc(100vh-155px);overflow:auto}
+nav a{display:flex;gap:9px;align-items:baseline;padding:5px 11px;color:var(--mu);text-decoration:none;border-left:2px solid var(--b);border-radius:0 6px 6px 0}
+nav a:hover{color:var(--ac);border-left-color:var(--ac);background:#1a1f26}
+nav .mn{flex:none;width:16px;font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums}
+nav .lbl{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin:15px 0 5px;padding-left:11px}
+h2.h{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--ac);margin:42px 0 8px;padding-bottom:9px;border-bottom:1px solid var(--b)}
+h2.h:first-child{margin-top:0}
+.lead{font-size:16px;color:#cfd6de;border-left:3px solid var(--ac);padding-left:16px;margin:14px 0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:16px 0}
+.k{background:var(--card);border:1px solid var(--b);border-radius:10px;padding:12px 14px}
+.k .v{font-size:20px;font-weight:650;letter-spacing:-.02em} .k .l{font-size:11.5px;color:var(--mu);margin-top:2px}
+.k.g .v{color:var(--ok)} .k.c .v{color:var(--cr)} .k.w .v{color:var(--wa)} .k.a .v{color:var(--ac)}
+article.sec{background:var(--card);border:1px solid var(--b);border-radius:12px;padding:18px 20px;margin:14px 0}
+article.sec>header{display:flex;gap:11px;align-items:baseline;border-bottom:1px solid var(--b);padding-bottom:10px;margin-bottom:12px}
+.badge{flex:none;width:28px;height:28px;border-radius:50%;background:#1e2a3a;color:var(--ac);display:grid;place-items:center;font-size:13px;font-weight:650}
+article.sec h3{margin:0;font-size:18px;flex:1}
+.pag{flex:none;font-size:11.5px;color:var(--dim);font-family:ui-monospace,Consolas,monospace}
+.row{margin:11px 0} .lb{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--mu);margin-bottom:2px}
+.row p{margin:0} .row.op p{color:#cfe0f0;font-style:italic;border-left:2px solid var(--ac);padding-left:12px}
+.al{background:#2a2211;border:1px solid #4a3a12;border-radius:8px;padding:10px 13px;margin-top:12px;font-size:14px}
+.al b{display:block;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--wa);margin-bottom:2px}
+.al p{margin:0}
+.q{margin:11px 0}
+.qb{display:block;width:100%;text-align:left;background:#12161b;border:1px solid var(--b);color:var(--tx);padding:10px 14px 10px 33px;border-radius:8px;font:inherit;font-size:14.5px;cursor:pointer;position:relative}
+.qb:hover{border-color:var(--ac);background:#161c23}
+.qb::before{content:"▸";position:absolute;left:14px;color:var(--ac);transition:transform .18s;display:inline-block}
+.q.open .qb::before{transform:rotate(90deg)}
+.q.open .qb{border-color:var(--ok);border-radius:8px 8px 0 0}
+.qa{display:none;padding:11px 14px;border:1px solid var(--ok);border-top:0;border-radius:0 0 8px 8px;background:#101a15;font-size:14.5px;color:#d4dde5}
+.q.open .qa{display:block}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--b);vertical-align:top}
+th{color:var(--mu);font-size:11px;letter-spacing:.07em;text-transform:uppercase;border-bottom:1px solid var(--b2)}
+.tw{overflow-x:auto} td.tm{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--mu)}
+td.st{text-align:center}
+.dot{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;font-size:12px;font-weight:700}
+.d-ok{background:#12301f;color:#5fe0a4} .d-falla{background:#3a1c1e;color:#ff8f8f} .d-aviso{background:#3a2f14;color:#f5c95a}
+tr.n-falla{background:#1e1416} tr.n-aviso{background:#1c1a12}
+.hide{display:none}
+footer{max-width:1170px;margin:0 auto;padding:26px;border-top:1px solid var(--b);color:var(--dim);font-size:12.5px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+@media(max-width:820px){.wrap{grid-template-columns:1fr}nav{position:static;max-height:none}}
+@media print{nav,header.top{display:none} body{background:#fff;color:#000} .qa{display:block!important}
+ article.sec,.al,.k{background:#fff;border-color:#bbb;break-inside:avoid}}
+</style>
+<header class="top">
+  <h1>Guía de socialización · Documentación del trabajo aplicado</h1>
+  <div class="sub">Jueves 6 de agosto de 2026 · presentación directa sobre el documento Word · NTC 1486 y APA</div>
+  <input id="s" placeholder="Buscar sección, cifra, norma…" aria-label="Buscar">
+</header>
+<div class="wrap">
+<nav>
+  <div class="lbl">Preparación</div>
+  <a href="#como"><span class="mn">·</span>Cómo será la sesión</a>
+  <a href="#crono"><span class="mn">·</span>Recorrido cronometrado</a>
+  <div class="lbl">Las 16 secciones</div>
+  <a href="#s1"><span class="mn">1</span>Título</a><a href="#s2"><span class="mn">2</span>Introducción</a><a href="#s3"><span class="mn">3</span>Descripción de los procesos generales</a><a href="#s4"><span class="mn">4</span>Planteamiento y formulación del problema</a><a href="#s5"><span class="mn">5</span>Objetivos</a><a href="#s6"><span class="mn">6</span>Justificación</a><a href="#s7"><span class="mn">7</span>Alcance del trabajo</a><a href="#s8"><span class="mn">8</span>Delimitación</a><a href="#s9"><span class="mn">9</span>Marco de referencia</a><a href="#s10"><span class="mn">10</span>Metodología</a><a href="#s11"><span class="mn">11</span>Ingeniería del producto de datos</a><a href="#s12"><span class="mn">12</span>Modelo de negocio</a><a href="#s13"><span class="mn">13</span>Estrategias de comunicación</a><a href="#s14"><span class="mn">14</span>Conclusiones</a><a href="#s15"><span class="mn">15</span>Recomendaciones</a><a href="#s16"><span class="mn">16</span>Fuentes de información</a>
+  <div class="lbl">Cierre</div>
+  <a href="#norma"><span class="mn">·</span>NTC 1486 y APA</a>
+  <a href="#arreglos"><span class="mn">·</span>Arreglos de hoy</a>
+  <a href="#preg"><span class="mn">·</span>Preguntas probables</a>
+</nav>
+<main>
+<h2 class="sr-only">Guía de estudio de la documentación</h2>
+
+<h2 class="h" id="como">Cómo será la sesión</h2>
+<p>Fabián Castillo pidió dos cosas concretas: que la socialización recorra los dieciséis puntos de la documentación, y que la presentación se haga <b>directamente sobre el documento Word</b>. No hay diapositivas, no hay demostración de dashboard. Se navega el documento y se explica.</p><p>Eso cambia por completo la preparación. No se trata de recitar un guion memorizado sino de <b>saber dónde está cada cosa en su propio documento</b> y poder explicar por qué está escrita así. Un evaluador va a hacer scroll, va a detenerse en una tabla y va a preguntar.</p><p>Esta guía recorre las dieciséis secciones en el orden que pidió el director. Cada una trae: qué dice su documento, con qué frase abrirla, la cifra que la sostiene y la pregunta más probable.</p>
+<div class="kpis">
+ <div class="k a"><div class="v">16</div><div class="l">puntos a recorrer</div></div>
+ <div class="k a"><div class="v">15</div><div class="l">secciones en el documento</div></div>
+ <div class="k a"><div class="v">7</div><div class="l">tablas para apoyarse</div></div>
+ <div class="k c"><div class="v">3</div><div class="l">incumplimientos de norma</div></div>
+ <div class="k w"><div class="v">2</div><div class="l">avisos de formato</div></div>
+ <div class="k g"><div class="v">30 min</div><div class="l">para dejarlo impecable</div></div>
+</div>
+<p class="lead">Su documento cubre los dieciséis puntos que pidió el director. No falta ninguno. Lo que falla es el formato: 3 incumplimientos de NTC 1486 que se corrigen en menos de diez minutos y que son de los que se notan a simple vista.</p>
+
+<h2 class="h" id="crono">Recorrido cronometrado</h2>
+<p>Si la socialización es de quince minutos, esta es una distribución que da aire a la sección que más pesa.</p>
+<div class="tw"><table><thead><tr><th>Minuto</th><th>Bloque</th><th>Qué hacer</th></tr></thead><tbody><tr><td class="tm">0:00 – 1:00</td><td><b>Título, introducción y ubicación</b></td><td>Presenten el título completo, expliquen «registradas» y den las cuatro cifras: 18 paquetes, 6.703.355 registros, 173 meses, dos objetivos.</td></tr><tr><td class="tm">1:00 – 3:00</td><td><b>Procesos, problema y objetivos</b></td><td>Recorran el mapa de procesos, lean la formulación del problema textual y enumeren los seis objetivos específicos apoyándose en la Tabla 1.</td></tr><tr><td class="tm">3:00 – 5:00</td><td><b>Justificación, alcance y delimitación</b></td><td>Tres justificaciones en una frase cada una. Muestren la Tabla 2 completa: las seis dimensiones cierran las ambigüedades.</td></tr><tr><td class="tm">5:00 – 7:00</td><td><b>Marco de referencia</b></td><td>FOB contra CIF contra peso neto. Series de tiempo. Tabla 3 de normas: mencionen Ley 1712 y Ley 1581.</td></tr><tr><td class="tm">7:00 – 9:00</td><td><b>Metodología</b></td><td>Los ocho pasos del procedimiento y la estrategia de validación walk-forward. Aquí es donde se demuestra rigor.</td></tr><tr><td class="tm">9:00 – 13:00</td><td><b>Ingeniería del producto de datos</b></td><td>La sección más larga y la que más peso tiene. Recorran Tablas 4, 5, 6 y 7. Deténganse en la 6 y expliquen el WAPE.</td></tr><tr><td class="tm">13:00 – 15:00</td><td><b>Negocio, comunicación, conclusiones y recomendaciones</b></td><td>Propuesta de valor, honestidad sobre la validación con usuarios, la frase de cierre de conclusiones y el siguiente paso.</td></tr></tbody></table></div>
+
+<h2 class="h" id="secciones">Las dieciséis secciones</h2>
+<article class="sec" id="s1">
+ <header><span class="badge">1</span><h3>Título</h3><span class="pag">Portada</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>«Desarrollo de un producto de datos para el monitoreo y pronóstico de las importaciones registradas por la aduana de Buenaventura, orientado a la planeación logística y comercial».</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«El título declara tres cosas: qué se construye —un producto de datos—, sobre qué —las importaciones registradas por la aduana de Buenaventura—, y para qué —la planeación logística y comercial.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>La palabra que carga más peso es «registradas». No dice «que pasan por el puerto». Esa precisión está sostenida en todo el documento.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Por qué «registradas por la aduana» y no «del puerto de Buenaventura»?</button>
+   <div class="qa">Porque la variable aduana identifica la oficina donde se presenta la declaración, no la operación física. Una mercancía puede entrar por Buenaventura y declararse en otra aduana. El documento lo delimita en la sección de Alcance y lo repite en Delimitación.</div></div>
+ <div class="al"><b>Ojo</b><p>El título también dice «monitoreo». Si alguien pregunta dónde está el monitoreo, la respuesta honesta es que el producto entrega salidas verificables en CSV y que la interfaz de consulta es fase posterior, tal como está declarado en 7.1.5 y en Recomendaciones.</p></div>
+</article><article class="sec" id="s2">
+ <header><span class="badge">2</span><h3>Introducción</h3><span class="pag">pág. 6</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Sitúa a Buenaventura en el comercio exterior colombiano, plantea la insuficiencia de revisar cifras acumuladas cuando hay que anticipar el periodo siguiente, y presenta las cifras del proyecto.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«La introducción parte de un hecho y de un vacío. El hecho es que Buenaventura conecta el interior del país con el Pacífico. El vacío es que revisar cifras después de que el movimiento ocurrió no sirve para planear el mes que viene.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>18 paquetes DANE · 6.703.355 registros filtrados · 173 meses continuos de enero de 2012 a mayo de 2026 · cinco notebooks, cuatro capas de datos y dos modelos.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Qué aporta este trabajo que no den las publicaciones del DANE?</button>
+   <div class="qa">El DANE publica para consultar el comercio exterior nacional. Este trabajo convierte esa información en una vista delimitada a una aduana, comparable mes a mes, actualizable y con un pronóstico a un mes que el DANE no entrega.</div></div>
+ <div class="al"><b>Ojo</b><p>El último párrafo de la introducción ya declara que no hay API ni aplicación web desplegada. Es la declaración más temprana de ese límite y conviene mencionarla ustedes, no esperar a que la encuentren.</p></div>
+</article><article class="sec" id="s3">
+ <header><span class="badge">3</span><h3>Descripción de los procesos generales</h3><span class="pag">pág. 6-8</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Reseña el sector (DIAN produce, DANE valida y difunde desde 1993), su estructura en cinco tipos de actores, el mapa de procesos en misionales, estratégicos y de apoyo, el proceso objetivo y cinco oportunidades y desafíos.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«Antes de plantear el problema ubicamos el sector. Las estadísticas nacen de las declaraciones ante la DIAN; el DANE las valida y las difunde. Sobre ese circuito operan importadores, agencias de aduanas, transportadores, terminales y analistas.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>El mapa de procesos tiene tres niveles. Misionales: planeación de compras, gestión aduanera, transporte y almacenamiento, seguimiento de costos. Estratégicos: proyección de demanda, selección de proveedores, gestión de riesgos. De apoyo: gestión de datos, analítica y gobierno de datos.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿En qué punto exacto del mapa de procesos se inserta su producto?</button>
+   <div class="qa">En la planeación mensual y el seguimiento de importaciones, que es proceso misional, apoyado por el proceso de analítica. El usuario es un analista de comercio exterior o logística que necesita anticipar el valor CIF y el peso neto del mes siguiente. Está en la sección 1.4.</div></div>
+ <div class="al"><b>Ojo</b><p>Esta sección es la que la rúbrica gráfica sugiere representar como mapa de procesos o diagrama de flujo. Si les preguntan por qué está en texto, es válido decir que el documento sigue NTC 1486 y que la representación visual está prevista para la presentación.</p></div>
+</article><article class="sec" id="s4">
+ <header><span class="badge">4</span><h3>Planteamiento y formulación del problema</h3><span class="pag">pág. 8-10</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Describe la fragmentación de las fuentes, presenta antecedentes nacionales y locales, evalúa el nivel de madurez analítica, formula la pregunta central y la sistematiza en cinco preguntas derivadas.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«El problema no es que falten datos: es que llegan fragmentados. Un analista puede consultar totales históricos, pero debe descargar, unir, filtrar y revisar antes de poder comparar Buenaventura por mes, producto o país.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>La formulación es literal: «¿Cómo estimar, con un mes de anticipación, el valor CIF y el peso neto de las importaciones registradas por la Aduana de Buenaventura utilizando únicamente información disponible antes del mes que se desea pronosticar?»</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Por qué esa frase final, «información disponible antes del mes»?</button>
+   <div class="qa">Porque es la condición que define todo el diseño. Es la que impide usar el valor FOB o la TRM del mes que se quiere predecir. Si se relajara, el modelo daría precisión irreal. Esa cláusula conecta directamente con el control de fuga que se verifica en el EDA y con una prueba automatizada.</div></div>
+ <div class="al"><b>Ojo</b><p>Memoricen la formulación palabra por palabra. Es la única frase del documento que conviene recitar literal, porque es el eje de todo lo demás.</p></div>
+</article><article class="sec" id="s5">
+ <header><span class="badge">5</span><h3>Objetivos</h3><span class="pag">pág. 10-11</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Un objetivo general y seis específicos. Cada específico corresponde a una fase ejecutada y tiene un resultado verificable asociado en la Tabla 1.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«El objetivo general fue desarrollar un producto de datos reproducible que estime con un mes de anticipación el valor CIF y el peso neto, conservando la trazabilidad desde las fuentes hasta la inferencia.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>Los seis específicos: delimitar la decisión y los usuarios · recopilar y auditar las fuentes · consolidar los 18 paquetes y filtrar la aduana 35 · analizar mediante el EDA de 52 preguntas · entrenar y comparar tres modelos con validación temporal · generar el pronóstico y verificar con pruebas automatizadas.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Cumplieron todos los objetivos?</button>
+   <div class="qa">Sí, y la Tabla 1 lo documenta uno por uno con su resultado verificable. Los seis tienen evidencia: 18 paquetes conservados con trazabilidad, 6.703.355 registros, 173 meses continuos, EDA de 52 preguntas, backtest de 24 meses, y cinco notebooks con siete pruebas aprobadas.</div></div>
+ <div class="al"><b>Ojo</b><p>La palabra «reproducible» en el objetivo general es una promesa fuerte y la pueden respaldar: el pipeline se ejecutó de nuevo y reprodujo las métricas con exactitud de trece cifras significativas.</p></div>
+</article><article class="sec" id="s6">
+ <header><span class="badge">6</span><h3>Justificación</h3><span class="pag">pág. 11</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Tres justificaciones: teórica (series con tendencia, estacionalidad y cambios estructurales), metodológica (recorre completa la Metodología Fundamental para Ciencia de Datos) y práctica (evita repetir la consolidación manual).</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«La justificación tiene tres frentes. En lo teórico, el comercio exterior produce series con todas las complicaciones interesantes: tendencia, estacionalidad, cambios de nivel y valores extremos. En lo metodológico, permite recorrer la metodología completa. En lo práctico, elimina trabajo manual repetido.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>La justificación teórica menciona explícitamente la necesidad de separar el componente monetario del físico. Esa es la razón de fondo de modelar CIF y peso por separado.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Por qué es necesario separar valor y peso?</button>
+   <div class="qa">Porque su correlación mensual es de apenas 0,52. Un alza del valor CIF puede venir de más volumen o de mercancía más cara. Con un solo indicador no se puede distinguir, y se corre el riesgo de leer una variación nominal como un cambio físico.</div></div>
+ <div class="al"><b>Ojo</b><p>La justificación metodológica nombra la Metodología Fundamental para Ciencia de Datos de Rollins, que está citada en las fuentes. Si les preguntan por el marco metodológico, ese es el nombre.</p></div>
+</article><article class="sec" id="s7">
+ <header><span class="badge">7</span><h3>Alcance del trabajo</h3><span class="pag">pág. 12-13</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Cuatro subsecciones: productos concretos (seis entregables), resultados por objetivo (Tabla 1), características del producto (seis) y exclusiones (cinco).</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«El alcance está escrito en positivo y en negativo. Primero qué entrega el producto; después, con la misma claridad, qué no puede concluir.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>Productos: base consolidada, serie de 173 meses, EDA de 52 preguntas, notebook de modelado, dos modelos vigentes con archivo de pronóstico, y repositorio estructurado.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Cuáles son las exclusiones y por qué las declararon?</button>
+   <div class="qa">Cinco: no estima tiempos de despacho ni congestión, no pronostica costo logístico ni recomienda proveedores, no usa datos personales, no presenta causalidad, y no garantiza precisión constante. Se declaran porque delimitar el uso es parte de la responsabilidad de un producto de datos.</div></div>
+ <div class="al"><b>Ojo</b><p>La exclusión sobre causalidad es la más importante. La TRM y el ONI son señales predictivas, nunca causas. Si alguien les tiende esa trampa, la respuesta ya está escrita en 5.4.</p></div>
+</article><article class="sec" id="s8">
+ <header><span class="badge">8</span><h3>Delimitación</h3><span class="pag">pág. 14 · Tabla 2</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Una tabla con seis dimensiones: geográfica, temporal, temática, analítica, usuarios y tecnológica.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«La delimitación está en la Tabla 2 y cubre seis dimensiones. Vale la pena leerla completa porque cada fila cierra una posible ambigüedad.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>Geográfica: ADUA = 35, que no equivale al municipio de destino ni a una terminal. Temporal: enero de 2012 a mayo de 2026, 173 meses. Analítica: descripción histórica más pronóstico agregado de un mes. Tecnológica: Python y notebooks compatibles con Colab, <b>sin API ni webapp desplegada</b>.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Por qué empiezan en 2012 y no antes?</button>
+   <div class="qa">Por disponibilidad y homogeneidad de los microdatos publicados. Los paquetes que cubren la serie de forma consistente arrancan en 2012, y extender hacia atrás obligaría a homologar esquemas con criterios distintos, comprometiendo la comparabilidad.</div></div>
+ <div class="al"><b>Ojo</b><p>La fila tecnológica dice explícitamente «sin API o webapp desplegada». Es la declaración más clara del límite del producto y está en una tabla que el evaluador va a leer.</p></div>
+</article><article class="sec" id="s9">
+ <header><span class="badge">9</span><h3>Marco de referencia</h3><span class="pag">pág. 14-16</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Cuatro marcos: teórico con cinco subsecciones, conceptual con seis definiciones, contextual y legal con la Tabla 3 de normas.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«El marco teórico cubre cinco temas: qué son las estadísticas de importaciones, la diferencia entre FOB, CIF y peso neto, qué exige una serie de tiempo, cómo se miden concentración y contribución, y qué es un producto de datos.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>Definiciones que deben salir sin dudar. <b>FOB</b>: valor en el punto de embarque. <b>CIF</b>: incorpora costo, seguro y flete hasta el punto de entrada. <b>Peso neto</b>: excluye el empaque. <b>Capítulo arancelario</b>: agrupación de dos dígitos de la subpartida.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · Explique la diferencia entre FOB y CIF y por qué modelaron CIF.</button>
+   <div class="qa">FOB es el valor de la mercancía en el punto de embarque; CIF le suma costo, seguro y flete hasta el punto de entrada. Se modeló CIF porque refleja el valor que efectivamente ingresa al territorio aduanero, que es el relevante para planeación. El FOB contemporáneo se excluyó del modelo por fuga: correlaciona 0,9971 con el CIF.</div></div>
+ <div class="al"><b>Ojo</b><p>El marco legal, Tabla 3, cita cinco normas: Ley 1712 de 2014 sobre acceso a información pública, Ley 1581 de 2012 sobre datos personales, Resolución DANE 2386 de 2023 sobre codificación M49, términos de publicación de la DIAN y lineamientos de datos abiertos. Sepan al menos las dos leyes.</p></div>
+</article><article class="sec" id="s10">
+ <header><span class="badge">10</span><h3>Metodología</h3><span class="pag">pág. 17-18</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Cinco subsecciones: generalidades, procedimiento en ocho pasos, técnicas, herramientas y estrategia de validación.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«La investigación fue aplicada, cuantitativa y longitudinal, siguiendo de forma iterativa la Metodología Fundamental para Ciencia de Datos. Cada fase dejó una evidencia verificable.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>Los ocho pasos: precisar la decisión · descargar los 18 paquetes con manifiesto · homologar columnas y fechas · filtrar ADUA=35 y agregar · aplicar controles de calidad · ejecutar el EDA · comparar los tres modelos con walk-forward · reentrenar, inferir y probar.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Qué es la validación walk-forward y por qué la usaron?</button>
+   <div class="qa">Es una ventana expansiva de un paso. Para cada uno de los últimos 24 meses se entrena con todo lo anterior y se predice solo el siguiente. Se usa porque en series de tiempo la partición aleatoria metería meses futuros en el entrenamiento, dando un resultado excelente e inútil.</div></div>
+ <div class="al"><b>Ojo</b><p>En 8.5 dice que Ridge e HGB «solo recibieron variables que podían conocerse antes del mes objetivo». Esa frase es la defensa formal contra la fuga y está respaldada por una prueba automatizada.</p></div>
+</article><article class="sec" id="s11">
+ <header><span class="badge">11</span><h3>Ingeniería del producto de datos</h3><span class="pag">pág. 18-23</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>La sección más extensa. Cuatro bloques: abordando el problema, trabajando con los datos, resultados obtenidos y producto entregado con verificación. Contiene las Tablas 4, 5, 6 y 7.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«Esta es la sección central del documento y sigue las cuatro fases de la metodología: entender la decisión, trabajar los datos, obtener la respuesta y verificar el producto.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>Tabla 4: cinco criterios verificados. Tabla 5: cinco fuentes con cobertura y acceso. Tabla 6: las métricas de los seis modelos. Tabla 7: el pronóstico de junio de 2026 con sus intervalos.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · Muéstrenos la Tabla 6 y explíquenla.</button>
+   <div class="qa">Seis filas: tres modelos por dos objetivos, ordenados por WAPE. En CIF ganó Ridge con 7,340 % frente a 16,487 % del Naive 12. En peso neto ganó HistGradientBoosting con 9,509 % frente a 13,658 %. WAPE es la métrica principal porque pondera el error por volumen; MAE, RMSE y MAPE acompañan.</div></div>
+ <div class="al"><b>Ojo</b><p>En CIF, Ridge da 7,340 % y HGB 7,347 %. Esa diferencia es de siete milésimas y no es estadísticamente significativa. Si les preguntan cómo eligieron, digan que en CIF prácticamente empatan y que se prefirió Ridge por interpretabilidad, mientras que en peso la diferencia sí es clara. Adelantarse a esto los deja mejor parados que defender los 0,007.</p></div>
+</article><article class="sec" id="s12">
+ <header><span class="badge">12</span><h3>Modelo de negocio</h3><span class="pag">pág. 23-24</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Cuatro subsecciones: tipo de producto, propuesta de valor, recursos y sostenibilidad, y generación de valor.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«El resultado es un prototipo analítico reproducible de apoyo a la decisión, construido íntegramente con datos abiertos. No se presenta como una plataforma web terminada.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>La propuesta de valor es reducir el tiempo de preparación y convertir archivos dispersos en una serie mensual trazable. El usuario recibe una referencia de corto plazo, un intervalo y una medida del error observado.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Es esto comercializable? ¿Cuál sería el modelo?</button>
+   <div class="qa">El documento no plantea una oferta comercial y lo dice explícitamente: una implementación organizacional requeriría definir responsables, frecuencia de actualización, infraestructura y costos antes de plantear una oferta. Lo que sí está identificado es la fuente de valor: tiempo ahorrado en preparación, reducción de inconsistencias y capacidad de repetir el pronóstico.</div></div>
+ <div class="al"><b>Ojo</b><p>En 10.3 hay un punto fuerte poco visible: «posibilidad de réplica en otras aduanas mediante parámetros, sin alterar la lógica principal». Eso es escalabilidad y conviene mencionarlo.</p></div>
+</article><article class="sec" id="s13">
+ <header><span class="badge">13</span><h3>Estrategias de comunicación</h3><span class="pag">pág. 24</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Tres frentes: comunicación con usuarios, socialización académica y productos de comunicación elaborados.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«La comunicación se planteó en tres frentes: con el usuario final, en el ámbito académico, y los productos concretos que quedaron elaborados.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>Productos elaborados: presentación de sustentación, guion por diapositiva, EDA de 52 preguntas, tutorial de ejecución y documentación técnica del proyecto.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Han validado el producto con usuarios reales?</button>
+   <div class="qa">No, y el documento lo declara: «no se atribuye impacto operativo porque todavía no existe una implementación con usuarios de una organización». La validación hasta ahora es técnica y académica.</div></div>
+ <div class="al"><b>Ojo</b><p>Esa frase de 11.3 es de las mejor escritas del documento. Es honesta y protege el trabajo: nadie puede acusarlos de sobrevender resultados.</p></div>
+</article><article class="sec" id="s14">
+ <header><span class="badge">14</span><h3>Conclusiones</h3><span class="pag">pág. 24-25</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Un párrafo que recoge las cifras del proyecto y cierra con la idea de fondo.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«La conclusión recoge el recorrido: 18 paquetes integrados, 6.703.355 registros filtrados, 173 meses continuos, Ridge mejorando la referencia en CIF y HGB en peso neto.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>La frase de cierre es la más importante del documento: «El resultado principal no es una cifra aislada, sino un proceso que conserva las fuentes, transforma los datos, mide el error y genera una inferencia reproducible».</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · Si tuvieran que resumir el aporte en una frase, ¿cuál sería?</button>
+   <div class="qa">Esa misma frase de la conclusión. El aporte no es el número 2.070,9 millones: es el proceso trazable y repetible que lo produce, con su error medido y sus límites declarados.</div></div>
+ <div class="al"><b>Ojo</b><p>Aprendan esa frase. Es la respuesta al «¿y esto para qué sirve?» y es la que deja mejor impresión al cerrar.</p></div>
+</article><article class="sec" id="s15">
+ <header><span class="badge">15</span><h3>Recomendaciones</h3><span class="pag">pág. 25</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Cuatro recomendaciones: actualizar con cada publicación del DANE, contrastar el pronóstico con el valor observado, estabilizar el proceso antes de desplegar interfaz, y mantener el rezago de TRM y ONI.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«Las recomendaciones apuntan a la continuidad del producto, no a la operación del negocio.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>La más relevante: «Antes de desplegar una API o una interfaz debe estabilizarse el proceso mensual y definirse quién revisará los controles». Es una recomendación técnica que además explica por qué el producto todavía no tiene interfaz.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿Cuál es el siguiente paso del proyecto?</button>
+   <div class="qa">Estabilizar la actualización mensual, llevar un historial del error contrastando cada pronóstico contra el valor real, y solo después desplegar la interfaz de consulta. El orden importa: desplegar antes de tener el proceso estable trasladaría los fallos al usuario.</div></div>
+ <div class="al"><b>Ojo</b><p>Esta sección convierte la ausencia de dashboard en una decisión razonada en lugar de un vacío. Úsenla así.</p></div>
+</article><article class="sec" id="s16">
+ <header><span class="badge">16</span><h3>Fuentes de información</h3><span class="pag">pág. 25-26</span></header>
+ <div class="row"><span class="lb">Qué dice</span><p>Diez referencias en formato APA: DANE (tres), DIAN, Datos Abiertos Colombia, NOAA, dos leyes, Hyndman y Athanasopoulos, y Rollins.</p></div>
+ <div class="row op"><span class="lb">Con qué frase abrirla</span><p>«Las fuentes son diez, todas verificables y con enlace. Cinco son institucionales, dos normativas y dos bibliográficas.»</p></div>
+ <div class="row"><span class="lb">Lo que hay que saber</span><p>Las dos referencias académicas: <b>Hyndman, R. J., y Athanasopoulos, G. (2021)</b>, <i>Forecasting: Principles and Practice</i>, tercera edición — es el texto de referencia en pronóstico de series. Y <b>Rollins, J. B. (2015)</b>, <i>Foundational Methodology for Data Science</i>, IBM — es la metodología que siguieron.</p></div>
+ <div class="q"><button class="qb" type="button">Pregunta probable · ¿En qué se apoyaron para el diseño de la validación temporal?</button>
+   <div class="qa">En Hyndman y Athanasopoulos, que es el texto estándar de pronóstico de series de tiempo y donde se describe la validación con origen móvil. Está citado en las fuentes y sustenta la sección 8.5.</div></div>
+ <div class="al"><b>Ojo</b><p>Sepan quiénes son esos dos autores. Es la pregunta clásica para verificar que las referencias no son decorativas.</p></div>
+</article>
+
+<h2 class="h" id="norma">Cumplimiento de NTC 1486 y APA</h2>
+<p>Revisé el archivo Word directamente: márgenes, fuente, interlineado, numeración, tablas y referencias.</p>
+<div class="tw"><table><thead><tr><th>Requisito</th><th>Qué pide la norma</th><th>Qué tiene el documento</th><th>·</th><th>Comentario</th></tr></thead><tbody><tr class="n-ok"><td>Tamaño de papel</td><td>Carta, 21,5 × 27,9 cm</td><td>Carta 8,5 × 11 in</td>
+ <td class="st"><span class="dot d-ok">✓</span></td><td>Correcto.</td></tr><tr class="n-falla"><td>Márgenes</td><td>Superior 3 cm · izquierdo 4 cm · derecho 2 cm · inferior 3 cm</td><td>2,5 cm en los cuatro lados</td>
+ <td class="st"><span class="dot d-falla">✗</span></td><td>Los cuatro márgenes están iguales a 2,5 cm. La NTC 1486 pide márgenes asimétricos, con el izquierdo más ancho para la encuadernación. <b>Es lo más fácil de corregir y lo más visible.</b></td></tr><tr class="n-ok"><td>Fuente</td><td>Arial 12 o similar legible</td><td>Arial 12</td>
+ <td class="st"><span class="dot d-ok">✓</span></td><td>Correcto.</td></tr><tr class="n-ok"><td>Interlineado</td><td>1,5 líneas en el cuerpo</td><td>1,5</td>
+ <td class="st"><span class="dot d-ok">✓</span></td><td>Correcto.</td></tr><tr class="n-falla"><td>Numeración de páginas</td><td>Consecutiva, en la parte inferior centrada</td><td>El pie existe pero <b>no hay campo de número de página</b></td>
+ <td class="st"><span class="dot d-falla">✗</span></td><td>El documento no numera automáticamente. El índice remite a páginas que el lector no puede verificar.</td></tr><tr class="n-ok"><td>Numeración de títulos</td><td>Decimal: 1., 1.1, 1.1.1</td><td>Se usa correctamente hasta tercer nivel</td>
+ <td class="st"><span class="dot d-ok">✓</span></td><td>Correcto y consistente en las quince secciones.</td></tr><tr class="n-ok"><td>Índice general</td><td>Al inicio, con títulos y páginas</td><td>Presente y completo</td>
+ <td class="st"><span class="dot d-ok">✓</span></td><td>Correcto.</td></tr><tr class="n-ok"><td>Índice de tablas</td><td>Obligatorio si hay tablas</td><td>Presente, con las 7 tablas</td>
+ <td class="st"><span class="dot d-ok">✓</span></td><td>Correcto.</td></tr><tr class="n-aviso"><td>Índice de figuras</td><td>Obligatorio si hay figuras</td><td><b>No hay figuras en el documento</b></td>
+ <td class="st"><span class="dot d-aviso">!</span></td><td>El documento tiene cero imágenes. El proyecto tiene cinco figuras del EDA ya generadas. Incorporar al menos la serie histórica y la estacionalidad reforzaría mucho, y exigiría añadir el índice de figuras.</td></tr><tr class="n-aviso"><td>Formato de tablas</td><td>Numeradas, con título encima y fuente debajo</td><td>Numeradas con título encima; <b>sin nota de fuente</b></td>
+ <td class="st"><span class="dot d-aviso">!</span></td><td>Las siete tablas tienen numeración y título correctos, pero ninguna indica la fuente debajo. Además las tablas 1 a 5 no tienen bordes y las 6 y 7 sí: es inconsistente.</td></tr><tr class="n-falla"><td>Portada</td><td>Título, autores, director, institución, ciudad y año</td><td><b>«Director del trabajo:» aparece vacío</b></td>
+ <td class="st"><span class="dot d-falla">✗</span></td><td>Es el error más visible del documento y está en la primera página.</td></tr><tr class="n-ok"><td>Citas y referencias</td><td>APA vigente</td><td>Diez referencias con formato APA correcto: autor, año, título, fuente y URL</td>
+ <td class="st"><span class="dot d-ok">✓</span></td><td>Bien construidas. El detalle que falta es que APA no exige fecha de consulta para fuentes estables, así que están bien como están.</td></tr></tbody></table></div>
+
+<h2 class="h" id="arreglos">Arreglos para hacer hoy</h2>
+<p>En orden de impacto sobre esfuerzo. Los tres primeros suman ocho minutos y son los visibles.</p>
+<div class="tw"><table><thead><tr><th>Arreglo</th><th>Tiempo</th><th>Detalle</th></tr></thead><tbody><tr><td><b>Completar «Director del trabajo» en la portada</b></td><td class="tm">2 min</td><td>Está vacío en la primera página. Es lo primero que ve el evaluador.</td></tr><tr><td><b>Insertar numeración automática de páginas</b></td><td class="tm">3 min</td><td>Insertar › Número de página › Final de página, centrado. El índice ya remite a páginas.</td></tr><tr><td><b>Corregir los márgenes a NTC 1486</b></td><td class="tm">3 min</td><td>Diseño › Márgenes › Personalizar: superior 3 cm, izquierdo 4 cm, derecho 2 cm, inferior 3 cm.</td></tr><tr><td><b>Unificar el estilo de las siete tablas</b></td><td class="tm">10 min</td><td>Las tablas 1 a 5 no tienen bordes y las 6 y 7 sí. Apliquen el mismo estilo a todas.</td></tr><tr><td><b>Añadir nota de fuente debajo de cada tabla</b></td><td class="tm">10 min</td><td>«Fuente: elaboración propia con datos del DANE (2026)». La NTC 1486 y APA lo piden.</td></tr><tr><td><b>Corregir el error de los rezagos en 9.3.2</b></td><td class="tm">1 min</td><td>El texto dice «rezagos de uno, tres, seis y doce meses». El proyecto usa <b>uno, dos, tres, seis y doce</b>. Falta el rezago 2.</td></tr><tr><td><b>Incorporar dos figuras del EDA</b></td><td class="tm">15 min</td><td>La serie histórica y la estacionalidad ya están generadas en reportes/figuras. Añadirlas obliga a crear el índice de figuras, que también suma.</td></tr></tbody></table></div>
+
+<h2 class="h" id="preg">Preguntas probables</h2>
+<p>Formulen la respuesta en voz alta antes de abrirla. Todas están respaldadas por una sección concreta del documento.</p>
+<div class="q"><button class="qb" type="button">1. ¿Por qué eligieron Buenaventura?</button><div class="qa">Por su posición en el comercio exterior colombiano hacia el Pacífico y porque aparece identificada de forma explícita en la codificación de aduanas de los microdatos, lo que permite delimitarla sin ambigüedad. Está en Antecedentes locales.</div></div><div class="q"><button class="qb" type="button">2. ¿Cuál es la unidad de análisis?</button><div class="qa">El mes. Cada fila de la serie analítica representa un mes de la aduana 35. Los microdatos vienen por línea de declaración y se agregan mensualmente, como se explica en la sección 9.2.3.</div></div><div class="q"><button class="qb" type="button">3. ¿Qué metodología de ciencia de datos siguieron?</button><div class="qa">La Metodología Fundamental para Ciencia de Datos de Rollins, publicada por IBM en 2015 y citada en las fuentes. Se recorrió de forma iterativa y cada fase dejó evidencia verificable.</div></div><div class="q"><button class="qb" type="button">4. ¿Cómo garantizan que el pronóstico no usa información del futuro?</button><div class="qa">Por tres vías. El diseño: todas las variables se desplazan al menos un mes. La validación: walk-forward entrena estrictamente con meses anteriores. Y la verificación: una prueba automatizada comprueba que ninguna variable contemporánea entre al modelo.</div></div><div class="q"><button class="qb" type="button">5. ¿Por qué WAPE y no otra métrica?</button><div class="qa">Porque divide el error absoluto total entre el total observado, de modo que los meses de mayor movimiento pesan más. En comercio exterior fallar en un mes grande importa más que en uno pequeño, y MAPE los trataría igual. MAE, RMSE y MAPE se reportan como acompañantes.</div></div><div class="q"><button class="qb" type="button">6. ¿Qué tan bueno es un WAPE de 7,34 %?</button><div class="qa">Comparado contra la referencia estacional, que da 16,49 %, reduce el error a menos de la mitad. En términos absolutos, sobre un mes típico de 1.800 millones de dólares el error ronda los 130 millones. Sin la referencia el número no sería interpretable.</div></div><div class="q"><button class="qb" type="button">7. ¿Por qué el EDA está en 2012-2024 y el modelo llega a 2026?</button><div class="qa">Para conservar la trazabilidad con el informe exploratorio validado. El EDA quedó congelado en el corte histórico y el entrenamiento final incorporó la información hasta mayo de 2026. Está declarado en la sección 9.3.1.</div></div><div class="q"><button class="qb" type="button">8. ¿Dónde está el producto de datos? No veo una aplicación.</button><div class="qa">El producto es el pipeline reproducible que transforma las fuentes, evalúa modelos y publica el archivo de pronóstico, tal como se define en 7.1.5. La interfaz de consulta está declarada como fase posterior en Delimitación y en Recomendaciones, con la condición de estabilizar antes el proceso mensual.</div></div><div class="q"><button class="qb" type="button">9. ¿Qué pasa si el DANE cambia el formato de los archivos?</button><div class="qa">El proceso de mantenimiento revisa cambios de esquema y controles críticos antes de publicar una nueva salida, según 9.4.3. La homologación de columnas y tipos entre vigencias ya está implementada porque los paquetes de 2025-2026 vienen de un catálogo distinto al histórico.</div></div><div class="q"><button class="qb" type="button">10. ¿Los datos son públicos? ¿Hay problema de privacidad?</button><div class="qa">Todas las fuentes son públicas. La capa analítica excluye nombres, direcciones e identificadores que no son necesarios, y el repositorio no contiene credenciales. Se apoya en la Ley 1712 de 2014 para el acceso y en la Ley 1581 de 2012 para el tratamiento. Está en 9.2.4.</div></div><div class="q"><button class="qb" type="button">11. ¿El ONI y la TRM realmente aportan?</button><div class="qa">Aportan asociación predictiva, no causalidad, y así está declarado en las exclusiones. Entran siempre rezagadas un mes para no violar la condición de usar solo información disponible antes del periodo pronosticado.</div></div><div class="q"><button class="qb" type="button">12. ¿Qué harían distinto si empezaran de nuevo?</button><div class="qa">Separar la ventana de selección del modelo de la ventana de evaluación, para eliminar el sesgo optimista, e incorporar desde el principio las variables de composición por país y capítulo que el EDA propuso y que quedaron como trabajo futuro.</div></div>
+</main>
+</div>
+<footer>Guía preparada sobre el contenido verificado del documento y del proyecto ejecutado.
+Documentos relacionados: <code>CURSO_Proyecto_Buenaventura.html</code> · <code>REPORTE_EXPERTO.html</code> · <code>EDA_Visor_52_Preguntas.html</code></footer>
+<script>
+(function(){
+ document.querySelectorAll('.qb').forEach(b=>b.addEventListener('click',()=>b.parentElement.classList.toggle('open')));
+ const s=document.getElementById('s'),u=[...document.querySelectorAll('article.sec, tbody tr, main > .q')];
+ u.forEach(x=>x.dataset.t=(x.textContent||'').toLowerCase());
+ s.addEventListener('input',()=>{const v=s.value.trim().toLowerCase();
+  u.forEach(x=>x.classList.toggle('hide', !!v && !x.dataset.t.includes(v)));});
+})();
+</script></html>
