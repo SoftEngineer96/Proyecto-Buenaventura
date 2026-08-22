@@ -2,6 +2,7 @@ numpy>=2.0
 pandas>=2.2
 matplotlib>=3.9
 seaborn>=0.13
+plotly
 scipy>=1.14
 # Pinear a la version exacta instalada en tu maquina para reproducibilidad.
 # Averiguala con:  python -m pip show scikit-learn
@@ -19,3 +20,5 @@ pillow>=10.0
 pytest>=8.0
 streamlit==1.32.0
 statsmodels==0.14.0
+ydata-profiling
+openpyxl
