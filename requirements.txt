@@ -1,24 +1,10 @@
-numpy>=2.0
-pandas>=2.2
-matplotlib>=3.9
-seaborn>=0.13
-plotly
-scipy>=1.14
-# Pinear a la version exacta instalada en tu maquina para reproducibilidad.
-# Averiguala con:  python -m pip show scikit-learn
-# y reemplaza el numero de abajo si no coincide.
-scikit-learn==1.9.0
-statsmodels==0.14.5
-joblib>=1.4
-python-docx==1.2.0
-nbformat==5.10.4
-nbclient==0.10.2
-ipykernel==7.2.0
-jupyter>=1.1
-pypdfium2>=4.30
-pillow>=10.0
-pytest>=8.0
 streamlit==1.32.0
+pandas==2.2.2
+numpy==1.26.4
+matplotlib==3.8.4
+seaborn==0.13.2
+plotly==5.22.0
 statsmodels==0.14.0
-ydata-profiling
-openpyxl
+scikit-learn==1.5.0
+ydata-profiling==4.6.0
+openpyxl==3.1.2
