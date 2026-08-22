@@ -295,3 +295,26 @@ ax.set(title="Diez países de origen con mayor valor CIF acumulado", xlabel="Mil
 fig.tight_layout(); fig.savefig(FIGURES / "05_paises.png", dpi=180); plt.close(fig)
 
 print(json.dumps({"rows": result["rows"], "months": result["months"], "backtest": result["backtest"]}, ensure_ascii=False, indent=2))
+
+def run_eda():
+    import streamlit as st
+
+    st.subheader("Resultados del Análisis Exploratorio")
+
+    # 1. Estadísticas descriptivas
+    if "calcular_estadisticas" in globals():
+        resultados = calcular_estadisticas()
+        st.write("Estadísticas descriptivas:")
+        st.write(resultados)
+
+    # 2. Boxplots
+    if "generar_boxplots" in globals():
+        st.write("Boxplots después del capping:")
+        fig_box = generar_boxplots()
+        st.pyplot(fig_box)
+
+    # 3. Histogramas
+    if "generar_histogramas" in globals():
+        st.write("Histogramas comparativos:")
+        fig_hist = generar_histogramas()
+        st.pyplot(fig_hist)
