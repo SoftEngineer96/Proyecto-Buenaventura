@@ -1,4 +1,7 @@
 import streamlit as st
 
+# Título principal
 st.title("Proyecto Buenaventura")
-st.write("¡Hola Alejandro! Tu app está funcionando.")
+
+# Mensaje inicial
+st.write("¡Hola! Esta es la primera versión de tu aplicación en Streamlit.")
