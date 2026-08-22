@@ -17,3 +17,4 @@ jupyter>=1.1
 pypdfium2>=4.30
 pillow>=10.0
 pytest>=8.0
+streamlit
